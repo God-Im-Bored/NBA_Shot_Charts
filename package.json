@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server --open",
+    "start-flask-api": "cd api && venv/bin/flask run",
     "build-watch": "webpack -w",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "babel-loader": "^8.2.2",
+    "nba": "^4.15.0",
+    "nba-api-client": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2"
@@ -34,5 +37,7 @@
   "bugs": {
     "url": "https://github.com/God-Im-Bored/NBA_Shot_Charts/issues"
   },
-  "homepage": "https://github.com/God-Im-Bored/NBA_Shot_Charts#readme"
+  "homepage": "https://github.com/God-Im-Bored/NBA_Shot_Charts#readme",
+  "proxy": "http://127.0.0.1:5000/"
+  
 }
