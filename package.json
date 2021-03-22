@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
+    "express": "^4.17.1",
     "nba": "^4.15.0",
     "nba-api-client": "^1.1.1",
     "react": "^17.0.1",
@@ -38,6 +40,5 @@
     "url": "https://github.com/God-Im-Bored/NBA_Shot_Charts/issues"
   },
   "homepage": "https://github.com/God-Im-Bored/NBA_Shot_Charts#readme",
-  "proxy": "http://127.0.0.1:5000/"
-  
+  "proxy": "http://localhost:5000/"
 }

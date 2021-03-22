@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import axios from 'axios'
-import 'regenerator-runtime/runtime'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "regenerator-runtime/runtime";
 import {
   SearchIcon,
   FormControl,
@@ -20,12 +20,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBar = () => {
   const classes = useStyles();
-  const [stats, setStats] = useState([{}])
-
-  useEffect(async () => {
-    const res = await axios.get('/api')
-    console.log(setStats(res.data))
-  })
+  const [stats, setStats] = useState([{}]);
+  useEffect(() => {
+    fetch("/api").then((response) =>
+      response.json().then((data) => {
+        console.log((setStats(data)));
+      })
+    );
+  }, []);
 
   return (
     <div id="search-bar">
