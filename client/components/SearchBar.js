@@ -22,9 +22,9 @@ const SearchBar = () => {
   const classes = useStyles();
   const [stats, setStats] = useState([{}]);
   useEffect(() => {
-    fetch("/api").then((response) =>
+    fetch("http://localhost:5000/api").then((response) =>
       response.json().then((data) => {
-        console.log((setStats(data)));
+        console.log(setStats(data))
       })
     );
   }, []);
