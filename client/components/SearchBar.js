@@ -20,33 +20,20 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBar = () => {
   const classes = useStyles();
-  const [stats, setStats] = useState([{}]);
+  const [stats, setStats] = useState(null);
+
   useEffect(() => {
-    fetch("http://localhost:5000/api").then((response) =>
-      response.json().then((data) => {
-        console.log(setStats(data))
-      })
-    );
+    async function fetchData() {
+      const response = await fetch("http://localhost:5000/api");
+      const jsonData = await response.json();
+      setStats(jsonData);
+    }
+    fetchData();
   }, []);
 
   return (
     <div id="search-bar">
-      <FormControl className={classes.formControl}>
-        <InputLabel>Season Year</InputLabel>
-        <Select></Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Season Type</InputLabel>
-        <Select></Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Player</InputLabel>
-        <Select></Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Game Length</InputLabel>
-        <Select></Select>
-      </FormControl>
+      <h1>Hey World, from React.JS</h1>
     </div>
   );
 };
