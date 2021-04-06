@@ -1,35 +1,31 @@
 from flask import Flask
 from flask_cors import CORS
+
 from nba_api.stats.static import players
+from nba_api.stats.static import teams
 
-player_dict = players.get_players()
 
-
+player_list = players.get_players()
+team_list = teams.get_teams()
 
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
 @app.route('/', methods=["GET"])
 def index():
     return 'Flask API Index. Sup Bubba'
 
-
-@app.route('/api', methods=['GET'])
-def api():
-    return {
-        'userId': 1,
-        'title': 'Flask React Application',
-        'completed': False,
-        "Glen": True
-    }
-
 @app.route('/players', methods=['GET'])
 def players():
-    return { "data": player_dict }
-       
+    return { 'data': player_list}
+
+@app.route('/teams', methods=['GET'])
+def teams():
+    return {'data': team_list}
+
+
 
 
 if __name__ == '__main__':
