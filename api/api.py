@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
+import json
 
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
+from nba_api.stats.endpoints import shotchartdetail
 
 
 player_list = players.get_players()
@@ -24,6 +26,26 @@ def players():
 @app.route('/teams', methods=['GET'])
 def teams():
     return {'data': team_list}
+
+@app.route('/player_info/<name>', methods=['GET'])
+def player_info(name):
+    response = shotchartdetail.ShotChartDetail(
+                team_id=0,
+                player_id=2544
+            )
+    player_data = json.loads(response.get_json())
+
+    return {'data': player_data}
+
+    # for player in player_list:
+    #     if(name == player['full_name']):
+    #         response = shotchartdetail.ShotChartDetail(
+    #             team_id=0,
+    #             player_id=2544
+    #         )
+    #     player_data = json.loads(response.get_json())
+
+    # return {'player_data': player_data}
 
 
 

@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "regenerator-runtime/runtime";
-import { FormControl, TextField, makeStyles } from "@material-ui/core";
+import React from "react";
+import axios from 'axios'
+import PlayerSearch from './PlayerSearch'
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
 
-const SearchBar = () => {
-  const classes = useStyles();
-  const [playerData, setPlayerData] = useState({});
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      players: [],
+      teams: [],
+      seasons: [],
+      length: ''
+    }
+  }
 
-  const handleChange = (event) => {
-    setPlayerData(event.target.value);
-  };
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/players')
+      .then(response => {
+        this.setState({ players: response.data })
+        return axios.get('http://localhost:5000/teams')
+      })
+      .then(response => {
+        this.setState({ teams: response.data })
+      })
+  }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("http://localhost:5000/players");
-      setPlayerData(result.data);
-    };
-    fetchData();
-  }, []);
 
-  return (
-    Array.isArray(playerData.data) ? console.log(playerData.data.filter(item => item.is_active === true)) : 'Hi :)',
-    <div id="search-bar">
-      <h1>Player Search Bar</h1>
-      {/* {console.log(playerData.data.filter(item => item.is_active === true))} */}
-      <FormControl className={classes.formControl}>
-        <TextField
-          id="player-select"
-          select
-          label="Player"
-          value=""
-          onChange={handleChange}
-          helperText="Please select a player"
-        >
-          {Array.isArray(playerData.data) ? (
-            playerData.data.map((name) => {
-              return <h6 key={name.id}>{name.full_name}</h6>;
-            })
-          ) : (
-            <div>Uh Oh.</div>
-          )}
-        </TextField>
-      </FormControl>
-    </div>
-  );
-};
 
-export default SearchBar;
+  render() {
+    return (
+      <div id='search-bar'>
+        <h1>Class Component Search Bar</h1>
+        <PlayerSearch playersList={this.state.players} />
+
+      </div>
+
+    )
+  }
+}
+
+
+
+export default SearchBar
+
