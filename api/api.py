@@ -27,8 +27,8 @@ def players():
 def teams():
     return {'data': team_list}
 
-@app.route('/player_info/<name>', methods=['GET'])
-def player_info(name):
+@app.route('/player_info/<player_name>', methods=['GET'])
+def player_info(player_name):
     response = shotchartdetail.ShotChartDetail(
                 team_id=0,
                 player_id=2544
