@@ -6,38 +6,32 @@ import "regenerator-runtime/runtime";
 
 const PlayerSearch = (players) => {
   const [value, setValue] = useState([])
+  const [shot, setShot] = useState([])
   const { playersList } = players;
   const { data } = playersList;
 
   const names = Array.isArray(data) ? data.map((player) => player.full_name) : "";
 
   const handleChange = async (event, name) => {
+    const res = await fetch(`http://localhost:5000/player_info/${name}`)
+    const shots = await res.json()
+    console.log(shots)
     setValue(event.target.value)
     console.log(name)
     console.log(value)
-
-    if (event.key === 'Enter') {
-      try {
-        
-        // const result = await axios.get(`http://localhost:5000/player_info/${name}`)
-        // console.log(101, result.data)
-        console.log('Searched')
-    
-      } catch (error) {
-        console.error(error)
-      }
-    }
   }
 
   // name = 'Kawhi Leonard'
   // const search = async (event, name) => {
-  //   setValue(event.target.value)
   //   console.log(name)
   //   if (event.key === 'Enter') {
   //     try {
         
-  //       const result = await axios.get(`http://localhost:5000/player_info/${name}`)
-  //       console.log(101, result.data)
+  //       const res = await fetch(`http://localhost:5000/player_info/${name}`)
+  //       const shots = await res.json()
+  //       console.log(222, shots)
+  //       await setShots(shots)
+  //       setValue('')
   //       console.log('Searched')
     
   //     } catch (error) {
@@ -54,7 +48,7 @@ const PlayerSearch = (players) => {
       options={Array.isArray(names) ? names : []}
       getOptionLabel={(name) => name}
       onChange={handleChange}
-      onKeyPress={handleChange}
+      // onKeyPress={search}
       clearOnEscape
       renderInput={(params) => <TextField {...params} required label='Player' variant='outlined'  />}
       style={{ width: 200 }}
