@@ -5,6 +5,7 @@ import json
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import shotchartdetail
+from nba_api.stats.library.parameters import ContextMeasureDetailed, ContextMeasureSimple
 
 
 player_list = players.get_players()
@@ -37,13 +38,11 @@ def player_info(player_name):
         if(player_name == player['full_name']):
             response = shotchartdetail.ShotChartDetail(
                 team_id=0,
-                player_id=player['id']
+                player_id=player['id'],
+                context_measure_simple='FGA'
             )
-            player_data = json.loads(response.get_json())
-            print(player_data) 
-            print(player_name)
+            player_data= json.loads(response.get_json())
     return {'player_data': player_data}
-            # return {'player_data': player_data}
 
 if __name__ == '__main__':
     app.run(debug=True)

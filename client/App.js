@@ -1,13 +1,21 @@
 import React from 'react'
-import NavBar from './components/NavBar'
-import SearchBar from './components/SearchBar'
+import FilterBar from './components/FilterBar'
+
+
+
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                {/* <NavBar /> */}
-                <SearchBar />
+                <pre>Remodeling</pre>
+                <h2 id='landing-page-title'>NBA Shot Charts</h2>
+                <FilterBar />
+                
+                
+                
+                
+                
             </div>
         )
     }
