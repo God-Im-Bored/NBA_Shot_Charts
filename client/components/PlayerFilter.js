@@ -8,39 +8,39 @@ class PlayerFilter extends React.Component {
     super(props);
     this.state = {
       shots: [],
-      input: ''
+      input: "",
     };
-    this.handleChange = this.handleChange.bind(this)
-
+    this.onTrigger = this.onTrigger.bind(this)
   }
 
-  async handleChange(event, name){
-    const response = await fetch(`http://localhost:5000/player_info/${name}`)
-    const data = await response.json()
-    return this.setState(
-      { input: event.target.name,
-        shots: data
-      })
+  onTrigger(event, name) {
+    this.props.callback(name)
+    event.preventDefault();
   }
-
- 
 
   render() {
-    console.log(this.state)
     return (
-      <div id='player-filter-main'>
+      <div id="player-filter-main">
         <Autocomplete
-          id='names-list'
-          options={Array.isArray(this.props.namesList) ? this.props.namesList : []}
+          id="names-list"
+          options={
+            Array.isArray(this.props.namesList) ? this.props.namesList : []
+          }
+          onChange={this.onTrigger}
           getOptionLabel={(name) => name}
-          onChange={this.handleChange}
           clearOnEscape
-          renderInput={(params) => <TextField {...params} required label='Player' variants='outlined' />}
-          style={{ width: 600}}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              required
+              label="Player"
+              variants="outlined"
+            />
+          )}
+          style={{ width: 600 }}
         />
-
       </div>
-    )
+    );
   }
 }
 

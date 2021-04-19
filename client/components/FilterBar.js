@@ -17,7 +17,11 @@ class FilterBar extends React.Component {
     this.state = {
       players: [],
       teams: [],
+      userInput: null,
+      shots: []
     };
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -32,7 +36,19 @@ class FilterBar extends React.Component {
       });
   }
 
+  handleChange(input) {
+    console.log('change viewed')
+    return this.setState({ userInput: input})
+  }
+
+  async handleSubmit() {
+    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput}`)
+    const data = await response.json()
+    return this.setState({ shots: data})
+  }
+
   render() {
+    console.log(this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
@@ -47,6 +63,7 @@ class FilterBar extends React.Component {
             </div>
           </AccordionSummary>
           <PlayerFilter
+            callback={this.handleChange}
             playersList={this.state.players}
             namesList={
               Array.isArray(this.state.players.data)
@@ -56,7 +73,7 @@ class FilterBar extends React.Component {
           />
           <Divider />
           <AccordionActions>
-            <Button size="small">Submit</Button>
+            <Button onClick={this.handleSubmit}>Submit</Button>
           </AccordionActions>
         </Accordion>
       </div>
