@@ -8,7 +8,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <pre>Remodeling</pre>
+                <pre>In Development</pre>
                 <h2 id='landing-page-title'>NBA Shot Charts</h2>
                 <FilterBar />
                 
