@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
+
 import PlayerFilter from "./PlayerFilter";
+import SegmentFilter from './SegmentFilter'
+
 import {
   Accordion,
   AccordionSummary,
@@ -17,11 +20,20 @@ class FilterBar extends React.Component {
     this.state = {
       players: [],
       teams: [],
-      userInput: null,
-      shots: []
+      userInput: {
+        player: null,
+        season: null,
+        type: null,
+        segment: null
+      },
+      shots: [],
+      season: [],
+      type: ['Regular Season', 'Pre Season', 'Playoffs', 'All Star'],
+      segment: null
     };
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleReset = this.handleReset.bind(this)
   }
 
   componentDidMount() {
@@ -36,15 +48,32 @@ class FilterBar extends React.Component {
       });
   }
 
-  handleChange(input) {
+  handleChange(playerInput, seasonInput, segmentInput, typeInput, ) {
     console.log('change viewed')
-    return this.setState({ userInput: input})
+    
+    return this.setState(prevState => ({
+      userInput: {
+        ...prevState.userInput,
+        player: playerInput,
+        segment: segmentInput ? segmentInput : null
+      }
+    }))
   }
 
   async handleSubmit() {
-    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput}`)
+    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput[player]}`)
     const data = await response.json()
     return this.setState({ shots: data})
+  }
+
+  handleReset(event) {
+    console.log('reset button clicked')
+    event.preventDefault()
+    this.setState({
+      shots: [],
+      
+    })
+
   }
 
   render() {
@@ -71,9 +100,11 @@ class FilterBar extends React.Component {
                 : []
             }
           />
+          <SegmentFilter callback={this.handleChange} />
           <Divider />
           <AccordionActions>
-            <Button onClick={this.handleSubmit}>Submit</Button>
+            <Button onClick={this.handleSubmit} disableElevation={true}>Submit</Button>
+            <Button onClick={this.handleReset} disableElevation={true}>Reset</Button>
           </AccordionActions>
         </Accordion>
       </div>
