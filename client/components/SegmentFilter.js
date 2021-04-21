@@ -13,7 +13,7 @@ class SegmentFilter extends React.Component {
     }
 
     onTrigger(event, segment) {
-        this.props.callback(segment)
+        this.props.segmentCallback(segment)
         event.preventDefault();
       }
 

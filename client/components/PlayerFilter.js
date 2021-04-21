@@ -14,7 +14,7 @@ class PlayerFilter extends React.Component {
   }
 
   onTrigger(event, name) {
-    this.props.callback(name)
+    this.props.playerCallback(name)
     event.preventDefault();
   }
 

@@ -31,7 +31,9 @@ class FilterBar extends React.Component {
       type: ['Regular Season', 'Pre Season', 'Playoffs', 'All Star'],
       segment: null
     };
-    this.handleChange = this.handleChange.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
+    this.handlePlayer = this.handlePlayer.bind(this)
+    this.handleSegment = this.handleSegment.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleReset = this.handleReset.bind(this)
   }
@@ -48,20 +50,42 @@ class FilterBar extends React.Component {
       });
   }
 
-  handleChange(playerInput, seasonInput, segmentInput, typeInput, ) {
-    console.log('change viewed')
+  // handleChange(playerInput, seasonInput, segmentInput, typeInput, ) {
+  //   console.log('change viewed')
     
+  //   return this.setState(prevState => ({
+  //     userInput: {
+  //       ...prevState.userInput,
+  //       player: playerInput,
+  //       segment: segmentInput ? segmentInput : null
+  //     }
+  //   }))
+  // }
+
+  handlePlayer(playerInput) {
+    console.log('change viewed from player handler')
+
     return this.setState(prevState => ({
       userInput: {
         ...prevState.userInput,
-        player: playerInput,
-        segment: segmentInput ? segmentInput : null
+        player: playerInput
+      }
+    }))
+  }
+
+  handleSegment(segmentInput) {
+    console.log('change viewed from segment handler')
+
+    return this.setState(prevState => ({
+      userInput: {
+        ...prevState.userInput,
+        segment: segmentInput
       }
     }))
   }
 
   async handleSubmit() {
-    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput[player]}`)
+    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput.player}`)
     const data = await response.json()
     return this.setState({ shots: data})
   }
@@ -92,7 +116,7 @@ class FilterBar extends React.Component {
             </div>
           </AccordionSummary>
           <PlayerFilter
-            callback={this.handleChange}
+            playerCallback={this.handlePlayer}
             playersList={this.state.players}
             namesList={
               Array.isArray(this.state.players.data)
@@ -100,7 +124,7 @@ class FilterBar extends React.Component {
                 : []
             }
           />
-          <SegmentFilter callback={this.handleChange} />
+          <SegmentFilter segmentCallback={this.handleSegment} />
           <Divider />
           <AccordionActions>
             <Button onClick={this.handleSubmit} disableElevation={true}>Submit</Button>
