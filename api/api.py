@@ -4,7 +4,7 @@ import json
 
 from nba_api.stats.static import players
 from nba_api.stats.static import teams
-from nba_api.stats.endpoints import shotchartdetail
+from nba_api.stats.endpoints import shotchartdetail, commonplayerinfo
 from nba_api.stats.library.parameters import ContextMeasureDetailed, ContextMeasureSimple
 
 
@@ -31,6 +31,13 @@ def players():
 def teams():
     return {'data': team_list}
 
+@app.route('/card_info/<id>', methods=['GET'])
+def card_info(id):
+    response = commonplayerinfo.CommonPlayerInfo(
+        player_id=id
+    )
+    card_data = json.loads(response.get_json())
+    return {'data': card_data}
 
 @app.route('/player_info/<player_name>', methods=['GET'])
 def player_info(player_name):

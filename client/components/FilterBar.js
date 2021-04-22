@@ -50,20 +50,13 @@ class FilterBar extends React.Component {
       });
   }
 
-  // handleChange(playerInput, seasonInput, segmentInput, typeInput, ) {
-  //   console.log('change viewed')
-    
-  //   return this.setState(prevState => ({
-  //     userInput: {
-  //       ...prevState.userInput,
-  //       player: playerInput,
-  //       segment: segmentInput ? segmentInput : null
-  //     }
-  //   }))
-  // }
-
   handlePlayer(playerInput) {
-    console.log('change viewed from player handler')
+    
+
+    this.props.nameCallback(playerInput)
+    
+
+    
 
     return this.setState(prevState => ({
       userInput: {
@@ -74,7 +67,7 @@ class FilterBar extends React.Component {
   }
 
   handleSegment(segmentInput) {
-    console.log('change viewed from segment handler')
+  
 
     return this.setState(prevState => ({
       userInput: {
@@ -87,11 +80,13 @@ class FilterBar extends React.Component {
   async handleSubmit() {
     const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput.player}`)
     const data = await response.json()
-    return this.setState({ shots: data})
+    this.setState({ shots: data})
+    this.state.shots.player_data ? this.props.idCallback(this.state.shots.player_data.parameters.PlayerID) : console.log('no player id')
+    
   }
 
   handleReset(event) {
-    console.log('reset button clicked')
+    
     event.preventDefault()
     this.setState({
       shots: [],
@@ -101,7 +96,6 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
