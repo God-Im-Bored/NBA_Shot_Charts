@@ -4,17 +4,19 @@ import { Card, CardContent, CardHeader, CardMedia, Typography } from '@material-
 
 
 class PlayerCard extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             
         }
     }
 
+    
+
 
 
     render() {
-        console.log(this.props)
+        
         return (
             <div id='player-card-main'>
                 <pre>Player Card Component</pre>
