@@ -1,39 +1,43 @@
 import React from 'react'
 
 import { Card, CardContent, CardHeader, CardMedia, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-
-class PlayerCard extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            
-        }
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 300
+    },
+    media: {
+        height: 280
     }
+})
 
-    
+const PlayerCard = (props) => {
+    console.log(props)
+    const classes = useStyles()
 
-
-
-    render() {
-        
-        return (
-            <div id='player-card-main'>
-                <pre>Player Card Component</pre>
-                <Card>
-                    <CardHeader
-                        title='Card Info'
-                        subreader='Player Team'
-                    />
-                    <CardContent>
-                        <Typography variant='body2' component='h4'>
-                            {this.props.athlete}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </div>
-        )
-    }
+    return (
+        <div id='player-card-main'>
+            <pre>Player Card Component</pre>
+            <Card className={classes.root}>
+                <CardHeader
+                    title='Card Info'
+                    subreader='Player Team'
+                />
+                <CardMedia
+                    className={classes.media}
+                    image={props.avi ? props.avi : '/generic-player.png'}
+                    title='player-image'
+                />
+                <CardContent>
+                    <Typography variant='body2' component='h4'>
+                        {props.athlete}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </div>
+    )
 }
+
 
 export default PlayerCard
