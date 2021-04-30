@@ -42,7 +42,7 @@ class App extends React.Component {
         this.setState((prevState) => ({
           player: {
             ...prevState.player,
-            info: response.data,
+            info: response.data
           },
         }));
         return axios.get(imgUrl);
@@ -74,6 +74,7 @@ class App extends React.Component {
           athlete={this.state.player.name}
           id={this.state.player.id}
           avi={this.state.player.photo}
+          info={this.state.player.info}
         />
       </div>
     );
