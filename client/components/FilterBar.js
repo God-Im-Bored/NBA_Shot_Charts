@@ -64,12 +64,12 @@ class FilterBar extends React.Component {
       `http://localhost:5000/player_info/${this.state.userInput.player}`
     );
     const data = await response.json();
-    console.log('data -->', data.player_data.resultSets[0].rowSet) // array of ALL shots (arrays) in players career
-    this.setState({ shots: data });
+    // console.log('data -->', data.player_data.resultSets[0].rowSet) // array of ALL shots (arrays) in players career
+    this.setState({ shots: data.player_data.resultSets[0].rowSet });
     
     
-    this.state.shots.player_data
-      ? this.props.idCallback(this.state.shots.player_data.parameters.PlayerID)
+    data.player_data
+      ? this.props.idCallback(data.player_data.parameters.PlayerID)
       : console.log("no player id");
   }
 
@@ -81,7 +81,7 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    // console.log('FB state -->', this.state)
+    console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
