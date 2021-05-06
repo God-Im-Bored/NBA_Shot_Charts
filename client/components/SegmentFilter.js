@@ -34,7 +34,6 @@ class SegmentFilter extends React.Component {
                         variants='outlined'
                         />
                     )}
-                    style={{ width: 600 }}
                 />
 
 

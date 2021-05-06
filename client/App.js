@@ -3,6 +3,7 @@ import axios from "axios";
 import FilterBar from "./components/FilterBar";
 import PlayerCard from "./components/PlayerCard";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,9 +15,23 @@ class App extends React.Component {
         info: null,
         shots: null,
       },
+      players: [],
+      teams: []
     };
     this.updatePlayerName = this.updatePlayerName.bind(this);
     this.updatePlayerID = this.updatePlayerID.bind(this);
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/players")
+      .then((response) => {
+        this.setState({ players: response.data });
+        return axios.get("http://localhost:5000/teams");
+      })
+      .then((response) => {
+        this.setState({ teams: response.data });
+      });
   }
 
   updatePlayerName(playerName) {
@@ -42,7 +57,7 @@ class App extends React.Component {
         this.setState((prevState) => ({
           player: {
             ...prevState.player,
-            info: response.data
+            info: response.data,
           },
         }));
         return axios.get(imgUrl);
@@ -58,7 +73,6 @@ class App extends React.Component {
   }
 
   render() {
-   
     return (
       <div>
         <pre>In Development</pre>
@@ -68,14 +82,19 @@ class App extends React.Component {
         <FilterBar
           nameCallback={this.updatePlayerName}
           idCallback={this.updatePlayerID}
+          players={this.state.players}
+          teams={this.state.teams}
         />
 
-        <PlayerCard
-          athlete={this.state.player.name}
-          id={this.state.player.id}
-          avi={this.state.player.photo}
-          info={this.state.player.info}
-        />
+        <div id="viz-panel">
+          <PlayerCard
+            athlete={this.state.player.name}
+            id={this.state.player.id}
+            avi={this.state.player.photo}
+            info={this.state.player.info}
+          />
+          
+        </div>
       </div>
     );
   }

@@ -9,7 +9,13 @@ const useStyles = makeStyles({
     },
     media: {
         height: 280
-    }
+    },
+    desc: {
+        textAlign: 'center' 
+    },
+    name: {
+        fontWeight: 'bold'
+    },
 })
 
 const PlayerCard = (props) => {
@@ -29,8 +35,8 @@ const PlayerCard = (props) => {
                     image={props.avi ? props.avi : '/generic-player.png'}
                     title='player-image'
                 />
-                <CardContent>
-                    <Typography variant='body2' component='h4'>
+                <CardContent className={classes.desc}>
+                    <Typography className={classes.name} variant='body2' component='h4'>
                         {props.info ? props.info.data.resultSets[0].rowSet[0][3] : ''}
                     </Typography>
                     <Typography variant='body2' component='h4'>

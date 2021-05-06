@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import PlayerFilter from "./PlayerFilter";
-import SegmentFilter from './SegmentFilter'
+import SegmentFilter from "./SegmentFilter";
 
 import {
   Accordion,
@@ -18,88 +18,74 @@ class FilterBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
-      teams: [],
       userInput: {
         player: null,
         season: null,
         type: null,
-        segment: null
+        segment: null,
       },
+      
       shots: [],
       season: [],
-      type: ['Regular Season', 'Pre Season', 'Playoffs', 'All Star'],
-      segment: null
+      type: ["Regular Season", "Pre Season", "Playoffs", "All Star"],
+      segment: null,
     };
     // this.handleChange = this.handleChange.bind(this)
-    this.handlePlayer = this.handlePlayer.bind(this)
-    this.handleSegment = this.handleSegment.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleReset = this.handleReset.bind(this)
+    this.handlePlayer = this.handlePlayer.bind(this);
+    this.handleSegment = this.handleSegment.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/players")
-      .then((response) => {
-        this.setState({ players: response.data });
-        return axios.get("http://localhost:5000/teams");
-      })
-      .then((response) => {
-        this.setState({ teams: response.data });
-      });
-  }
+  
 
   handlePlayer(playerInput) {
-    
+    this.props.nameCallback(playerInput);
 
-    this.props.nameCallback(playerInput)
-    
-
-    
-
-    return this.setState(prevState => ({
+    return this.setState((prevState) => ({
       userInput: {
         ...prevState.userInput,
-        player: playerInput
-      }
-    }))
+        player: playerInput,
+      },
+    }));
   }
 
   handleSegment(segmentInput) {
-  
-
-    return this.setState(prevState => ({
+    return this.setState((prevState) => ({
       userInput: {
         ...prevState.userInput,
-        segment: segmentInput
-      }
-    }))
+        segment: segmentInput,
+      },
+    }));
   }
 
   async handleSubmit() {
-    const response = await fetch(`http://localhost:5000/player_info/${this.state.userInput.player}`)
-    const data = await response.json()
-    this.setState({ shots: data})
-    this.state.shots.player_data ? this.props.idCallback(this.state.shots.player_data.parameters.PlayerID) : console.log('no player id')
+    const response = await fetch(
+      `http://localhost:5000/player_info/${this.state.userInput.player}`
+    );
+    const data = await response.json();
+    console.log('data -->', data.player_data.resultSets[0].rowSet) // array of ALL shots (arrays) in players career
+    this.setState({ shots: data });
     
+    
+    this.state.shots.player_data
+      ? this.props.idCallback(this.state.shots.player_data.parameters.PlayerID)
+      : console.log("no player id");
   }
 
   handleReset(event) {
-    
-    event.preventDefault()
+    event.preventDefault();
     this.setState({
       shots: [],
-      
-    })
-
+    });
   }
 
   render() {
+    // console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
-        <Accordion defaultExpanded>
+        <Accordion>
           <AccordionSummary
             id="filter-bar"
             aria-controls="filter-bar-content"
@@ -111,18 +97,26 @@ class FilterBar extends React.Component {
           </AccordionSummary>
           <PlayerFilter
             playerCallback={this.handlePlayer}
-            playersList={this.state.players}
+            playersList={this.props.players}
             namesList={
-              Array.isArray(this.state.players.data)
-                ? this.state.players.data.map((player) => player.full_name)
+              Array.isArray(this.props.players.data)
+                ? this.props.players.data.map((player) => player.full_name)
                 : []
             }
           />
           <SegmentFilter segmentCallback={this.handleSegment} />
           <Divider />
           <AccordionActions>
-            <Button onClick={this.handleSubmit} disableElevation={true}>Submit</Button>
-            <Button onClick={this.handleReset} disableElevation={true}>Reset</Button>
+            <Button
+              id="submit-btn"
+              onClick={this.handleSubmit}
+              disableElevation={true}
+            >
+              Submit
+            </Button>
+            <Button onClick={this.handleReset} disableElevation={true}>
+              Reset
+            </Button>
           </AccordionActions>
         </Accordion>
       </div>

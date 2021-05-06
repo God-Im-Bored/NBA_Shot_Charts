@@ -19,6 +19,7 @@ class PlayerFilter extends React.Component {
   }
 
   render() {
+    
     return (
       <div id="player-filter-main">
         <Autocomplete
@@ -37,7 +38,6 @@ class PlayerFilter extends React.Component {
               variants="outlined"
             />
           )}
-          style={{ width: 600 }}
         />
       </div>
     );
