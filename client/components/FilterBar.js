@@ -86,7 +86,7 @@ class FilterBar extends React.Component {
       }
     }))
 
-    // set shots ([x, y] format) on profile
+    // set data's shotValue object on profile
     let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0
     for (let i = 0; i < sca.length; i++) {
       if (sca[i][10] === 'Made Shot' && sca[i][12] === '2PT Field Goal') {
@@ -101,11 +101,31 @@ class FilterBar extends React.Component {
       } else {
         missed3++
         missed++
-      }
-      
+      }  
     }
 
-    console.log('made', made)
+    const twoFreq = (made2 + missed2) / (made + missed)
+    const twoFG = made2 / (made2 + missed2)
+
+    const threeFreq = (made3 + missed3) / (made + missed)
+    const threeFG = made3 / (made3 + missed3)
+
+    this.setState((prevState) => ({
+      profile:{
+        ...prevState.profile,
+        data: {
+          shotValue: {
+            twos: [made2, (made2 + missed2), twoFreq.toFixed(2), twoFG.toFixed(2) ],
+            threes: [made3, (made3 + missed3), threeFreq.toFixed(2), threeFG.toFixed(2)],
+            total: [made, (made + missed)]
+          }
+        }
+      }
+    }))
+
+
+
+
 
 
 
