@@ -24,7 +24,13 @@ class FilterBar extends React.Component {
         type: null,
         segment: null,
       },
-      
+      profile: {
+        id: null,
+        name: null,
+        team: null,
+        shots: {},
+        data: {}
+      },
       shots: [],
       season: [],
       type: ["Regular Season", "Pre Season", "Playoffs", "All Star"],
@@ -64,9 +70,52 @@ class FilterBar extends React.Component {
       `http://localhost:5000/player_info/${this.state.userInput.player}`
     );
     const data = await response.json();
-    // console.log('data -->', data.player_data.resultSets[0].rowSet) // array of ALL shots (arrays) in players career
-    this.setState({ shots: data.player_data.resultSets[0].rowSet });
+    /*
+    -- Shots Object --
+    array of attempted field goals --> data.player_data.resultsets[0].rowSet
+    */
+    let sca = data.player_data.resultSets[0].rowSet
+
+    // set team, id and name (from most recent game) on profile
+    this.setState((prevState) => ({
+      profile: {
+        ...prevState.profile,
+        id: sca[sca.length - 1][3],
+        name: sca[sca.length - 1][4],
+        team: sca[sca.length - 1][6]
+      }
+    }))
+
+    // set shots ([x, y] format) on profile
+    let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0
+    for (let i = 0; i < sca.length; i++) {
+      if (sca[i][10] === 'Made Shot' && sca[i][12] === '2PT Field Goal') {
+        made2++
+        made++
+      } else if (sca[i][10] === 'Missed Shot' && sca[i][12] === '2PT Field Goal') {
+        missed2++
+        missed++
+      } else if (sca[i][10] === 'Made Shot' && sca[i][12] === '3PT Field Goal') {
+        made3++
+        made++
+      } else {
+        missed3++
+        missed++
+      }
+      
+    }
+
+    console.log('made', made)
+
+
+
+
     
+  
+
+
+    
+    this.setState({ shots: data.player_data.resultSets[0].rowSet });
     
     data.player_data
       ? this.props.idCallback(data.player_data.parameters.PlayerID)
