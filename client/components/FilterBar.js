@@ -70,6 +70,13 @@ class FilterBar extends React.Component {
       `http://localhost:5000/player_info/${this.state.userInput.player}`
     );
     const data = await response.json();
+
+    this.setState({ shots: data.player_data.resultSets[0].rowSet });
+    
+    data.player_data
+      ? this.props.idCallback(data.player_data.parameters.PlayerID)
+      : console.log("no player id");
+
     /*
     -- Shots Object --
     array of attempted field goals --> data.player_data.resultsets[0].rowSet
@@ -86,9 +93,10 @@ class FilterBar extends React.Component {
       }
     }))
 
-    // set data's shotValue object on profile
-    let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0
+    // set data object on profile
+    let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0, madeRA = 0, missedRA = 0, madePaint = 0, missedPaint = 0, madeMR = 0, missedMR = 0, madeATB3 = 0, missedATB3 = 0, madeCor = 0, missedCor = 0, madeBC = 0, missedBC = 0, madeITP = 0, missedITP = 0
     for (let i = 0; i < sca.length; i++) {
+      // shot value info
       if (sca[i][10] === 'Made Shot' && sca[i][12] === '2PT Field Goal') {
         made2++
         made++
@@ -102,7 +110,66 @@ class FilterBar extends React.Component {
         missed3++
         missed++
       }  
+
+      // shot zone makes/misses
+      if (sca[i][13] === 'Restricted Area' && sca[i][10] === 'Made Shot') {
+        madeRA++
+      } else {
+        if (sca[i][13] === 'Restricted Area' && sca[i][10] === 'Missed Shot') {
+          missedRA++
+        }
+      }
+
+      if (sca[i][13] === 'In The Paint (Non-RA)' && sca[i][10] === 'Made Shot') {
+        madeITP++
+      } else {
+        if (sca[i][13] === 'In The Paint (Non-RA)' && sca[i][10] === 'Missed Shot') {
+          missedITP++
+        }
+      }
+
+      if (sca[i][13] === 'Mid-Range' && sca[i][10] === 'Made Shot') {
+        madeMR++
+      } else {
+        if (sca[i][13] === 'Mid-Range' && sca[i][10] === 'Missed Shot') {
+          missedMR++
+        }
+      }
+
+      if (sca[i][13] === 'Above the Break 3' && sca[i][10] === 'Made Shot') {
+        madeATB3++
+      } else {
+        if (sca[i][13] === 'Above the Break 3' && sca[i][10] === 'Missed Shot') {
+          missedATB3++
+        }
+      }
+
+      if (sca[i][13] === 'Left Corner 3' || 'Right Corner 3' && sca[i][10] === 'Made Shot') {
+        madeCor++
+      } else {
+        if (sca[i][13] === 'Left Corner 3' || 'Right Corner 3' && sca[i][10] === 'Missed Shot') {
+          missedCor++
+        }
+      }
+
+      if (sca[i][13] === 'Backcourt' && sca[i][10] === 'Made Shot') {
+        madeBC++
+      } else {
+        if (sca[i][13] === 'Backcourt' && sca[i][10] === 'Missed Shot') {
+          missedBC++
+        }
+      }
+
+
+
     }
+
+    console.log(madeBC)
+    console.log(missedBC)
+
+    
+
+    
 
     const twoFreq = (made2 + missed2) / (made + missed)
     const twoFG = made2 / (made2 + missed2)
@@ -130,16 +197,15 @@ class FilterBar extends React.Component {
 
 
 
+
+
+
     
   
 
 
     
-    this.setState({ shots: data.player_data.resultSets[0].rowSet });
-    
-    data.player_data
-      ? this.props.idCallback(data.player_data.parameters.PlayerID)
-      : console.log("no player id");
+   
   }
 
   handleReset(event) {
@@ -150,7 +216,7 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    console.log('FB state -->', this.state)
+    // console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
