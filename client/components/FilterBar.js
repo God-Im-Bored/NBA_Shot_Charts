@@ -94,7 +94,7 @@ class FilterBar extends React.Component {
     }))
 
     // set data object on profile
-    let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0, madeRA = 0, missedRA = 0, madePaint = 0, missedPaint = 0, madeMR = 0, missedMR = 0, madeATB3 = 0, missedATB3 = 0, madeCor = 0, missedCor = 0, madeBC = 0, missedBC = 0, madeITP = 0, missedITP = 0
+    let made = 0, missed = 0, made3 = 0, missed3 = 0, made2 = 0, missed2 = 0, madeRA = 0, missedRA = 0, madePaint = 0, missedPaint = 0, madeMR = 0, missedMR = 0, madeATB3 = 0, missedATB3 = 0, madeLCor = 0, missedLCor = 0, madeRCor = 0, missedRCor = 0, madeBC = 0, missedBC = 0, madeITP = 0, missedITP = 0
     for (let i = 0; i < sca.length; i++) {
       // shot value info
       if (sca[i][10] === 'Made Shot' && sca[i][12] === '2PT Field Goal') {
@@ -144,11 +144,19 @@ class FilterBar extends React.Component {
         }
       }
 
-      if (sca[i][13] === 'Left Corner 3' || 'Right Corner 3' && sca[i][10] === 'Made Shot') {
-        madeCor++
+      if (sca[i][13] === 'Left Corner 3'  && sca[i][10] === 'Made Shot') {
+        madeLCor++
       } else {
-        if (sca[i][13] === 'Left Corner 3' || 'Right Corner 3' && sca[i][10] === 'Missed Shot') {
-          missedCor++
+        if (sca[i][13] === 'Left Corner 3'  && sca[i][10] === 'Missed Shot') {
+          missedLCor++
+        }
+      }
+
+      if (sca[i][13] === 'Right Corner 3' && sca[i][10] === 'Made Shot') {
+        madeRCor++
+      } else {
+        if (sca[i][13] === 'Right Corner 3' && sca[i][10] === 'Missed Shot') {
+          missedRCor++
         }
       }
 
@@ -163,10 +171,6 @@ class FilterBar extends React.Component {
 
 
     }
-
-    console.log(madeBC)
-    console.log(missedBC)
-
     
 
     
@@ -177,19 +181,33 @@ class FilterBar extends React.Component {
     const threeFreq = (made3 + missed3) / (made + missed)
     const threeFG = made3 / (made3 + missed3)
 
+    
+
     this.setState((prevState) => ({
       profile:{
         ...prevState.profile,
         data: {
           shotValue: {
-            twos: [made2, (made2 + missed2), twoFreq.toFixed(2), twoFG.toFixed(2) ],
+            twos: [made2, (made2 + missed2), twoFreq.toFixed(2), twoFG.toFixed(2)],
             threes: [made3, (made3 + missed3), threeFreq.toFixed(2), threeFG.toFixed(2)],
             total: [made, (made + missed)]
+          },
+          shotZone: {
+            RA: [madeRA, (madeRA + missedRA), ((madeRA + missedRA) / (made + missed)).toFixed(2), (madeRA / (madeRA + missedRA)).toFixed(2)],
+            Paint: [madeITP, (madeITP + missedITP), ((madeITP + missedITP) / (made + missed)).toFixed(2), (madeITP / (madeITP + missedITP)).toFixed(2)],
+            MR: [madeMR, (madeMR + missedMR), ((madeMR + missedMR) / (made + missed)).toFixed(2), (madeMR / (madeMR + missedMR)).toFixed(2)],
+            ATB3: [madeATB3, (madeATB3 + missedATB3), ((madeATB3 + missedATB3) / (made + missed)).toFixed(2), (madeATB3 / (madeATB3 + missedATB3)).toFixed(2)],
+            lCOR: [madeLCor, (madeLCor + missedLCor), ((madeLCor + missedLCor) / (made + missed)).toFixed(2), (madeLCor / (madeLCor + missedLCor)).toFixed(2)],
+            rCOR: [madeRCor, (madeRCor + missedRCor), ((madeRCor + missedRCor) / (made + missed)).toFixed(2), (madeRCor / (madeRCor + missedRCor)).toFixed(2)],
+            BC: [madeBC, (madeBC + missedBC), ((madeBC + missedBC) / (made + missed)).toFixed(2), (madeBC / (madeBC + missedBC)).toFixed(2)]
+
           }
         }
       }
     }))
 
+
+    
 
 
 
@@ -216,7 +234,7 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    // console.log('FB state -->', this.state)
+    console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
@@ -226,6 +244,7 @@ class FilterBar extends React.Component {
             aria-controls="filter-bar-content"
             expandIcon={<ExpandMoreIcon />}
           >
+            
             <div id="filter-label-column">
               <Typography id="filter-bar-label">Search Options</Typography>
             </div>
@@ -239,7 +258,7 @@ class FilterBar extends React.Component {
                 : []
             }
           />
-          <SegmentFilter segmentCallback={this.handleSegment} />
+          {/* <SegmentFilter segmentCallback={this.handleSegment} /> */}
           <Divider />
           <AccordionActions>
             <Button
