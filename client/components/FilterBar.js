@@ -195,8 +195,13 @@ class FilterBar extends React.Component {
 
   }
 
-    console.log(map)
     
+    this.setState((prevState) => ({
+      profile: {
+        ...prevState.profile,
+        shots: map
+      }
+    }))
 
     
 
@@ -232,23 +237,6 @@ class FilterBar extends React.Component {
     }))
 
 
-    
-
-
-
-
-
-
-
-
-
-
-    
-  
-
-
-    
-   
   }
 
   handleReset(event) {
@@ -259,7 +247,7 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    // console.log('FB state -->', this.state)
+    console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
