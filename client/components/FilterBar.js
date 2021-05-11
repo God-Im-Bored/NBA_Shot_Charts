@@ -168,9 +168,34 @@ class FilterBar extends React.Component {
         }
       }
 
-
-
     }
+
+    // shot [x, y] and seasons
+    let year = null
+    const map = {}
+    for (let i = 0; i < sca.length; i++) {
+      let gameDay = sca[i][21], date = gameDay.toString(), year = date.slice(0, 4), month = date.slice(4, 6)
+      const leap = year - 1, x = sca[i][17], y = sca[i][18]
+
+      
+      
+      // console.log('date -->', date)
+      // console.log('year -->', year)
+      // console.log('month -->', month)
+
+      if (month >= 8 || month <= 6 && year - 1 === leap) {
+        if (!map[year]) {
+          map[year] = []
+          map[year].push([x, y])
+        } else {
+          map[year].push([x, y])
+        }
+  
+    }
+
+  }
+
+    console.log(map)
     
 
     
@@ -234,7 +259,7 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    console.log('FB state -->', this.state)
+    // console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <pre>Filter Bar Component</pre>
