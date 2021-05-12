@@ -43,8 +43,6 @@ class FilterBar extends React.Component {
     this.handleReset = this.handleReset.bind(this);
   }
 
-  
-
   handlePlayer(playerInput) {
     this.props.nameCallback(playerInput);
 
@@ -177,12 +175,6 @@ class FilterBar extends React.Component {
       let gameDay = sca[i][21], date = gameDay.toString(), year = date.slice(0, 4), month = date.slice(4, 6)
       const leap = year - 1, x = sca[i][17], y = sca[i][18]
 
-      
-      
-      // console.log('date -->', date)
-      // console.log('year -->', year)
-      // console.log('month -->', month)
-
       if (month >= 8 || month <= 6 && year - 1 === leap) {
         if (!map[year]) {
           map[year] = []
@@ -195,7 +187,6 @@ class FilterBar extends React.Component {
 
   }
 
-    
     this.setState((prevState) => ({
       profile: {
         ...prevState.profile,
@@ -203,15 +194,11 @@ class FilterBar extends React.Component {
       }
     }))
 
-    
-
     const twoFreq = (made2 + missed2) / (made + missed)
     const twoFG = made2 / (made2 + missed2)
 
     const threeFreq = (made3 + missed3) / (made + missed)
     const threeFG = made3 / (made3 + missed3)
-
-    
 
     this.setState((prevState) => ({
       profile:{
@@ -236,6 +223,8 @@ class FilterBar extends React.Component {
       }
     }))
 
+    this.props.chartDataCallback(this.state.profile.data)
+
 
   }
 
@@ -247,17 +236,15 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    console.log('FB state -->', this.state)
+    // console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
-        <pre>Filter Bar Component</pre>
         <Accordion>
           <AccordionSummary
             id="filter-bar"
             aria-controls="filter-bar-content"
             expandIcon={<ExpandMoreIcon />}
-          >
-            
+          >          
             <div id="filter-label-column">
               <Typography id="filter-bar-label">Search Options</Typography>
             </div>

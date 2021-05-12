@@ -8,7 +8,8 @@ const useStyles = makeStyles({
         maxWidth: 350
     },
     media: {
-        height: 280
+        height: 280,
+        width: 225
     },
     desc: {
         textAlign: 'center' 
@@ -24,7 +25,6 @@ const PlayerCard = (props) => {
 
     return (
         <div id='player-card-main'>
-            <pre>Player Card Component</pre>
             <Card className={classes.root}>
                 <CardHeader
                     title=''

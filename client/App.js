@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import FilterBar from "./components/FilterBar";
 import PlayerCard from "./components/PlayerCard";
+import ShotChart from './components/ShotChat'
 
 
 class App extends React.Component {
@@ -16,10 +17,15 @@ class App extends React.Component {
         shots: null,
       },
       players: [],
-      teams: []
+      teams: [],
+      values: {
+        chartData: null,
+        graphData: null
+      }
     };
     this.updatePlayerName = this.updatePlayerName.bind(this);
     this.updatePlayerID = this.updatePlayerID.bind(this);
+    this.updateValues = this.updateValues.bind(this)
   }
 
   componentDidMount() {
@@ -41,6 +47,15 @@ class App extends React.Component {
         name: playerName,
       },
     }));
+  }
+
+  updateValues(data) {
+    return this.setState((prevState) => ({
+      values: {
+        ...prevState.values,
+        chartData: data
+      }
+    }))
   }
 
   updatePlayerID(playerID) {
@@ -73,6 +88,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <pre>In Development</pre>
@@ -81,6 +97,7 @@ class App extends React.Component {
 
         <FilterBar
           nameCallback={this.updatePlayerName}
+          chartDataCallback={this.updateValues}
           idCallback={this.updatePlayerID}
           players={this.state.players}
           teams={this.state.teams}
@@ -93,6 +110,9 @@ class App extends React.Component {
             avi={this.state.player.photo}
             info={this.state.player.info}
           />
+          <ShotChart
+            data={this.state.values.chartData}
+           />
           
         </div>
       </div>
