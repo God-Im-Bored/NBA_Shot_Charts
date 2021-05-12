@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 })
 
 const PlayerCard = (props) => {
-    // console.log(props.info ? props.info.data.resultSets[0].rowSet : props.info)
+ 
     const classes = useStyles()
 
     return (

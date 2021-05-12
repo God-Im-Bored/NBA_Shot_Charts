@@ -224,6 +224,7 @@ class FilterBar extends React.Component {
     }))
 
     this.props.chartDataCallback(this.state.profile.data)
+    this.props.graphDataCallback(this.state.profile.shots)
 
 
   }
@@ -236,7 +237,6 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    // console.log('FB state -->', this.state)
     return (
       <div id="filter-bar-main">
         <Accordion>

@@ -26,6 +26,7 @@ class App extends React.Component {
     this.updatePlayerName = this.updatePlayerName.bind(this);
     this.updatePlayerID = this.updatePlayerID.bind(this);
     this.updateValues = this.updateValues.bind(this)
+    this.updateData = this.updateData.bind(this)
   }
 
   componentDidMount() {
@@ -54,6 +55,15 @@ class App extends React.Component {
       values: {
         ...prevState.values,
         chartData: data
+      }
+    }))
+  }
+
+  updateData(data) {
+    return this.setState((prevState) => ({
+      values: {
+        ...prevState.values,
+        graphData: data
       }
     }))
   }
@@ -98,6 +108,7 @@ class App extends React.Component {
         <FilterBar
           nameCallback={this.updatePlayerName}
           chartDataCallback={this.updateValues}
+          graphDataCallback={this.updateData}
           idCallback={this.updatePlayerID}
           players={this.state.players}
           teams={this.state.teams}
