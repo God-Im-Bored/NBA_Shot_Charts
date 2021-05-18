@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import FilterBar from "./components/FilterBar";
 import PlayerCard from "./components/PlayerCard";
-import ShotChart from './components/ShotChat'
+import ShotChart from './components/ShotChart'
 
 
 class App extends React.Component {
@@ -98,7 +98,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div>
         <pre>In Development</pre>

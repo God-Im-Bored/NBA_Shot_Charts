@@ -28,7 +28,7 @@ const PlayerCard = (props) => {
             <Card className={classes.root}>
                 <CardHeader
                     title=''
-                    subreader='Player Team'
+                    subheader=''
                 />
                 <CardMedia
                     className={classes.media}
