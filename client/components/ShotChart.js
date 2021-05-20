@@ -24,6 +24,7 @@ const ShotChart = (props) => {
             </tr>
             <tr>
               <th>Shot Value</th>
+
               <th>FGM</th>
               <th>FMA</th>
               <th>PPS</th>
@@ -31,39 +32,32 @@ const ShotChart = (props) => {
               <th>PPS</th>
               <th>Freq</th>
             </tr>
-            </thead>
-            {props.data ? (
-              Object.entries(props.data.shotValue).map((type) => {
-                <tr key={type[0]}>
-                  <td>{type[0]}</td>
-                  {type[1].map((value) => (
-                    <td key={value}>{type[1].value}</td>
-                  ))}
-                </tr>;
-              })
-            ) : (
-              <table id="shot-chart-layout">
-                <tbody>
-                  <tr>
-                    <th>3 Pt Shots</th>
-                  </tr>
-                  <tr>
-                    <th>2 Pt Shots</th>
-                  </tr>
-                  <tr>
-                    <th>Total</th>
-                  </tr>
-                </tbody>
-              </table>
-            )}
-            <tr>
-              <th>Shot Zone</th>
-            </tr>
-          
-
+          </thead>
+          {props.data ? (
+            Object.entries(props.data.shotValue).map((type) => {
+              <tr key={type[0]}>
+                <td>{type[0]}</td>
+                {type[1].map((value) => (
+                  <td key={value}>{type[1].value}</td>
+                ))}
+              </tr>;
+            })
+          ) : (
+            <tbody>
+              <tr>
+                <th>3 Pt Shots</th>
+              </tr>
+              <tr>
+                <th>2 Pt Shots</th>
+              </tr>
+              <tr>
+                <th>Total</th>
+              </tr>
+            </tbody>
+          )}
           <tbody>
             <tr>
-              <td></td>
+              <th>Shot Zone</th>
             </tr>
           </tbody>
         </table>

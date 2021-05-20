@@ -12,8 +12,9 @@
 }
 
 #viz-panel {
-    display: flex;
+    display: block;
 }
+
 
 
 

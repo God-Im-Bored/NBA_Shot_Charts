@@ -5,11 +5,11 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 350
+        maxWidth: 400
     },
     media: {
         height: 280,
-        width: 225
+        width: 400
     },
     desc: {
         textAlign: 'center' 
