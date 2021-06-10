@@ -18,7 +18,7 @@ const ShotChart = (props) => {
         <CardHeader title="Field Goal Breakdown" subheader="Player Shot Info" />
         {props.data ? (
             Object.entries(props.data.shotValue).map((type, i) => {
-              console.log(type[0]),
+              // console.log(type[0]),
              <pre>type[0]</pre>
              
 

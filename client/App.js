@@ -125,7 +125,7 @@ class App extends React.Component {
           <ShotChart
             data={this.state.values.chartData}
            />
-           <ShotGraph/>
+           <ShotGraph data={this.state.values.graphData}/>
           
         </div>
       </div>
