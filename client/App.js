@@ -3,6 +3,7 @@ import axios from "axios";
 import FilterBar from "./components/FilterBar";
 import PlayerCard from "./components/PlayerCard";
 import ShotChart from './components/ShotChart'
+import ShotGraph from './components/ShotGraph'
 
 
 class App extends React.Component {
@@ -124,6 +125,7 @@ class App extends React.Component {
           <ShotChart
             data={this.state.values.chartData}
            />
+           <ShotGraph/>
           
         </div>
       </div>

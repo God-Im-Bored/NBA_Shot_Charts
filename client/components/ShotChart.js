@@ -16,6 +16,37 @@ const ShotChart = (props) => {
     <div id="player-shot-chart-main">
       <Card className={classes.root}>
         <CardHeader title="Field Goal Breakdown" subheader="Player Shot Info" />
+        {props.data ? (
+            Object.entries(props.data.shotValue).map((type, i) => {
+              console.log(type[0]),
+             <pre>type[0]</pre>
+             
+
+              {/* <tr key={type[0]}>
+                <th>type[0]</th>
+                <td>{type[0]}</td>
+                {type[1].map((value) => (
+                  <td key={value}>{type[1].value}</td>
+                ))}
+              </tr>; */}
+
+             
+
+            })
+          ) : (
+            <pre>Hi</pre>
+            // <tbody>
+            //   <tr>
+            //     <th>twos</th>
+            //   </tr>
+            //   <tr>
+            //     <th>threes</th>
+            //   </tr>
+            //   <tr>
+            //     <th>total</th>
+            //   </tr>
+            // </tbody>
+          )}
         <table>
           <thead>
             <tr>
@@ -34,29 +65,7 @@ const ShotChart = (props) => {
             </tr>
           </thead>
           
-          {props.data ? (
-            Object.entries(props.data.shotValue).map((type) => {
-              console.log(type),
-              <tr key={type[0]}>
-                <td>{type[0]}</td>
-                {type[1].map((value) => (
-                  <td key={value}>{type[1].value}</td>
-                ))}
-              </tr>;
-            })
-          ) : (
-            <tbody>
-              <tr>
-                <th>3 Pt Shots</th>
-              </tr>
-              <tr>
-                <th>2 Pt Shots</th>
-              </tr>
-              <tr>
-                <th>Total</th>
-              </tr>
-            </tbody>
-          )}
+          
           <tbody>
             <tr>
               <th>Shot Zone</th>
