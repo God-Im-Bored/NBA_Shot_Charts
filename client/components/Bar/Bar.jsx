@@ -1,6 +1,7 @@
 import React from "react";
 
 import { seasons } from '../../api/seasons.js'
+import { fetchPlayerShots } from '../../api'
 
 import {
   Accordion,
@@ -17,7 +18,18 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 
 const Bar = ({ players }) => {
-  console.log(players)
+
+  const handleSubmit = async (player, season) => {
+    
+    const test = await fetchPlayerShots(player, season)
+
+    
+  }
+  
+
+
+
+
   return (
     <Accordion>
       <AccordionSummary
@@ -55,6 +67,8 @@ const Bar = ({ players }) => {
           renderInput={(params) => (
             <TextField
             {...params}
+            margin='normal'
+            fullWidth
             required
             label='Season'
             variants='outlined'
@@ -66,7 +80,8 @@ const Bar = ({ players }) => {
 
       <Divider />
       <AccordionActions>
-        <Button>
+        <Button
+          onClick={(e) => {handleSubmit(e.target.value)} }>
           Submit
         </Button>
         <Button>
