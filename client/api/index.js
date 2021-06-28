@@ -2,7 +2,19 @@ import axios from 'axios'
 import "regenerator-runtime/runtime"
 
 const playersUrl = 'http://localhost:5000/players'
-const playerShotsUrl = `http://localhost:5000/player_info/${player}/${season}`
+const player = {
+
+    shotTypeData: {
+        2: ['made', 'missed', 'total'],
+        3: ['made', 'missed', 'total'],
+        total: ['made', 'missed', 'total']
+    },
+    shotZoneData: {
+        RA: ['made', 'missed', 'total'],
+        
+    },
+    data: [[x, y], [x, y], [x, y], 'etc']
+}
 
 let player = null, season = null
 
@@ -19,12 +31,23 @@ export const fetchPlayers = async () => {
 
 export const fetchPlayerShots = async (playerName, seasonYear) => {
     let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`
+
+
+
+
+
     try {
         if (playerName && seasonYear) {
             // player_data.resultSets[0].rowSet === shots array
             
             const { data: { player_data } } = await axios.get(customUrl)
-            console.log(player_data.resultSets[0].rowSet)
+            
+            const shotsArr = player_data.resultSets[0].rowSet 
+            
+            shotsArr.map((shot) => {
+
+            })
+            
 
         }
         
