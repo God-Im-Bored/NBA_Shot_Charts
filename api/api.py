@@ -19,7 +19,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/', methods=["GET"])
 def index():
-    return 'Flask API Index. Sup Bubba'
+    return 'Nba Shot Charts Flask API Index'
 
 
 @app.route('/players', methods=['GET'])
