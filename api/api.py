@@ -39,14 +39,16 @@ def card_info(id):
     card_data = json.loads(response.get_json())
     return {'data': card_data}
 
-@app.route('/player_info/<player_name>', methods=['GET'])
-def player_info(player_name):
+@app.route('/player_info/<player_name>/<season>', methods=['GET'])
+def player_info(player_name, season):
+    
     for player in player_list:
         if(player_name == player['full_name']):
             response = shotchartdetail.ShotChartDetail(
                 team_id=0,
                 player_id=player['id'],
-                context_measure_simple='FGA'
+                context_measure_simple='FGA',
+                season_nullable=season,
             )
             player_data= json.loads(response.get_json())
     return {'player_data': player_data}
