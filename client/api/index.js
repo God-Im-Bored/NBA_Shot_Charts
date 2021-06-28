@@ -21,9 +21,10 @@ export const fetchPlayerShots = async (playerName, seasonYear) => {
     let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`
     try {
         if (playerName && seasonYear) {
+            // player_data.resultSets[0].rowSet === shots array
             
-            const res = await axios.get(customUrl)
-            console.log(res)
+            const { data: { player_data } } = await axios.get(customUrl)
+            console.log(player_data.resultSets[0].rowSet)
 
         }
         

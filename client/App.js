@@ -27,7 +27,7 @@ class App extends React.Component {
     
     return (
       <div className={styles.container}>
-        <h2>Hello from App component</h2>
+        <h2>Nba Shot Charts</h2>
         <Bar players={players}/>
         <Card />
         <Chart />
