@@ -24,10 +24,10 @@ const Bar = ({ players }) => {
 
   const handleSubmit = async (event) => {
     // event.preventDefault()
-    console.log(season)
-    console.log(player)
+    console.log(player, season)
     
-    // const test = await fetchPlayerShots(player, season)
+    
+    const test = await fetchPlayerShots(player, season)
 
     
   }

@@ -2,7 +2,7 @@ import axios from 'axios'
 import "regenerator-runtime/runtime"
 
 const playersUrl = 'http://localhost:5000/players'
-const playerShotsUrl = `http://localhost:5000/${player}/${season}`
+const playerShotsUrl = `http://localhost:5000/player_info/${player}/${season}`
 
 let player = null, season = null
 
@@ -18,15 +18,14 @@ export const fetchPlayers = async () => {
 }
 
 export const fetchPlayerShots = async (playerName, seasonYear) => {
-    let customUrl = playerShotsUrl
+    let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`
     try {
         if (playerName && seasonYear) {
-            player = playerName;
-            season = seasonYear
+            
+            const res = await axios.get(customUrl)
+            console.log(res)
 
         }
-        const res = await axios.get(customUrl)
-        console.log(res)
         
     } catch (err) {
         console.log(err)
