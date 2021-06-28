@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { seasons } from '../../api/seasons.js'
 import { fetchPlayerShots } from '../../api'
@@ -19,9 +19,15 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const Bar = ({ players }) => {
 
-  const handleSubmit = async (player, season) => {
+  const [player, setPlayer] = useState('')
+  const [season, setSeason] = useState('')
+
+  const handleSubmit = async (event) => {
+    // event.preventDefault()
+    console.log(season)
+    console.log(player)
     
-    const test = await fetchPlayerShots(player, season)
+    // const test = await fetchPlayerShots(player, season)
 
     
   }
@@ -55,6 +61,8 @@ const Bar = ({ players }) => {
             {...params}
             required
             label='Player'
+            value={player}
+            onSelect={e => setPlayer(e.target.value)}
             variants='outlined'
           />
         )}
@@ -67,10 +75,10 @@ const Bar = ({ players }) => {
           renderInput={(params) => (
             <TextField
             {...params}
-            margin='normal'
-            fullWidth
             required
             label='Season'
+            value={season}
+            onSelect={e => setSeason(e.target.value)}
             variants='outlined'
             />
           )}
@@ -81,6 +89,7 @@ const Bar = ({ players }) => {
       <Divider />
       <AccordionActions>
         <Button
+          type="submit"
           onClick={(e) => {handleSubmit(e.target.value)} }>
           Submit
         </Button>
