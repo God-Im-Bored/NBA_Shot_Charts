@@ -23,8 +23,8 @@ const Bar = ({ players }) => {
   const [season, setSeason] = useState('')
 
   const handleSubmit = async (event) => {
-    // event.preventDefault()
-    console.log(player, season)
+    
+    // console.log(player, season)
     
     
     const test = await fetchPlayerShots(player, season)
