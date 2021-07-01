@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { seasons } from '../../api/seasons.js'
-import { fetchPlayerShots } from '../../api'
+import { seasons } from "../../api/seasons.js";
+import { fetchPlayerShots } from "../../api";
 
 import {
   Accordion,
@@ -12,29 +12,19 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { Autocomplete } from '@material-ui/lab'
+import { Autocomplete } from "@material-ui/lab";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-
-
 const Bar = ({ players }) => {
-
-  const [player, setPlayer] = useState('')
-  const [season, setSeason] = useState('')
+  const [player, setPlayer] = useState("");
+  const [season, setSeason] = useState("");
 
   const handleSubmit = async (event) => {
-    
-    // console.log(player, season)
-    
-    
-    const test = await fetchPlayerShots(player, season)
 
-    
-  }
-  
+    const playerShotData = await fetchPlayerShots(player, season);
 
-
-
+    console.log(playerShotData);
+  };
 
   return (
     <Accordion>
@@ -42,17 +32,16 @@ const Bar = ({ players }) => {
         id="filter-bar"
         aria-controls="filter-bar-content"
         expandIcon={<ExpandMoreIcon />}
-        >
-        <Typography>
-          Search Options
-        </Typography>
+      >
+        <Typography>Search Options</Typography>
       </AccordionSummary>
 
-
       <Autocomplete
-        id='players-list'
+        id="players-list"
         options={
-          Array.isArray(players) ? players.map((player) => player.full_name) : []
+          Array.isArray(players)
+            ? players.map((player) => player.full_name)
+            : []
         }
         getOptionLabel={(name) => name}
         clearOnEscape
@@ -60,45 +49,44 @@ const Bar = ({ players }) => {
           <TextField
             {...params}
             required
-            label='Player'
+            label="Player"
             value={player}
-            onSelect={e => setPlayer(e.target.value)}
-            variants='outlined'
+            onSelect={(e) => setPlayer(e.target.value)}
+            variants="outlined"
           />
         )}
-         />
-         <Autocomplete
-          id='season-list'
-          options={seasons}
-          getOptionLabel={(season) => season}
-          clearOnEscape
-          renderInput={(params) => (
-            <TextField
+      />
+      <Autocomplete
+        id="season-list"
+        options={seasons}
+        getOptionLabel={(season) => season}
+        clearOnEscape
+        renderInput={(params) => (
+          <TextField
             {...params}
             required
-            label='Season'
+            label="Season"
             value={season}
-            onSelect={e => setSeason(e.target.value)}
-            variants='outlined'
-            />
-          )}
+            onSelect={(e) => setSeason(e.target.value)}
+            variants="outlined"
           />
-
-     
+        )}
+      />
 
       <Divider />
       <AccordionActions>
         <Button
           type="submit"
-          onClick={(e) => {handleSubmit(e.target.value)} }>
+          onClick={(e) => {
+            handleSubmit(e.target.value);
+          }}
+        >
           Submit
         </Button>
-        <Button>
-          Reset
-        </Button>
+        <Button>Reset</Button>
       </AccordionActions>
     </Accordion>
-  )
+  );
 };
 
 export default Bar;

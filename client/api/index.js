@@ -2,21 +2,8 @@ import axios from 'axios'
 import "regenerator-runtime/runtime"
 
 const playersUrl = 'http://localhost:5000/players'
-// const player = {
-
-//     shotTypeData: {
-//         2: ['made', 'missed', 'total'],
-//         3: ['made', 'missed', 'total'],
-//         total: ['made', 'missed', 'total']
-//     },
-//     shotZoneData: {
-//         RA: ['made', 'missed', 'total'],
-
-//     },
-//     data: [[x, y], [x, y], [x, y], 'etc']
-// }
-
-// let player = null, season = null
+let cardInfoUrl = `http://localhost:5000/card_info${id}`
+let cardHeadshot = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${id}.png`
 
 export const fetchPlayers = async () => {
     try {
@@ -31,12 +18,6 @@ export const fetchPlayers = async () => {
 
 export const fetchPlayerShots = async (playerName, seasonYear) => {
     let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`
-
-    
-
-
-
-
 
     try {
         if (playerName && seasonYear) {
@@ -130,11 +111,7 @@ export const fetchPlayerShots = async (playerName, seasonYear) => {
                       missedBC++
                     }
                   }
-
-                
-                
-                
-                
+  
             }
             
             // shot types makes/misses/FG%
@@ -158,13 +135,11 @@ export const fetchPlayerShots = async (playerName, seasonYear) => {
             player.shotZoneData['rCOR'].push(madeRCor, (madeRCor + missedRCor), ((madeRCor + missedRCor) / (made + missed)).toFixed(2), (madeRCor / (madeRCor + missedRCor)).toFixed(3))
 
             player.shotZoneData['Backcourt'].push(madeBC, (madeBC + missedBC), ((madeBC + missedBC) / (made + missed)).toFixed(2), (madeBC / (madeBC + missedBC)).toFixed(3))
-            
-            console.log(player)
 
-
-            
+            return player
 
         }
+        
         
     } catch (err) {
         console.log(err)
