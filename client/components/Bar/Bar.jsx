@@ -21,9 +21,9 @@ const Bar = ({ players }) => {
 
   const handleSubmit = async (event) => {
 
-    const playerShotData = await fetchPlayerData(player, season);
+    const playerData = await fetchPlayerData(player, season);
 
-    // console.log(playerShotData);
+    console.log(playerData);
   };
 
   return (

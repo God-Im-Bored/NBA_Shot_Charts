@@ -27,18 +27,35 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
       const shotsArr = player_data.resultSets[0].rowSet;
       const playerId = player_data.resultSets[0].rowSet[0][3];
 
-      if (playerId) {
-        const cardInfoUrl = `http://localhost:5000/card_info/${playerId}`;
-        const cardHeadshot = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png`;
+      const cardInfoUrl = `http://localhost:5000/card_info/${playerId}`;
+      const cardHeadshot = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png`;
 
-        const {data: { data } } = await axios.get(cardInfoUrl)
-        console.log(data)
+      const {
+        data: { data },
+      } = await axios.get(cardInfoUrl);
 
-        const headshotPNG = await axios.get(cardHeadshot)
-        console.log(headshotPNG)
+      // common player info and player headshot retrieved from api request
+      const commonPlayerInfo = data.resultSets[0].rowSet;
+      const playerHeadshot = await axios.get(cardHeadshot);
+
+      
+
+      
+
+      let info = {
+        img: playerHeadshot.data,
+        name: commonPlayerInfo[0][3],
+        position: commonPlayerInfo[0][15],
+        height: commonPlayerInfo[0][11],
+        weight: commonPlayerInfo[0][12],
+        team: commonPlayerInfo[0][19],
+        tenure: commonPlayerInfo[0][13]
       }
 
+      console.log(info)
+
       const len = shotsArr.length;
+      
       let player = {
         shotTypeData: { 2: [], 3: [], Total: [] },
         shotZoneData: {
