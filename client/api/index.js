@@ -52,11 +52,12 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         tenure: commonPlayerInfo[0][13]
       }
 
-      console.log(info)
+      
 
       const len = shotsArr.length;
       
       let player = {
+        info,
         shotTypeData: { 2: [], 3: [], Total: [] },
         shotZoneData: {
           Restricted_Area: [],
@@ -69,6 +70,10 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         },
         data: [],
       };
+
+      
+
+      console.log(player)
 
       let made = 0,
         missed = 0,
