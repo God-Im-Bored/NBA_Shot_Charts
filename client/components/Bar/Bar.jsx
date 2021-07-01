@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { seasons } from "../../api/seasons.js";
-import { fetchPlayerShots } from "../../api";
+import { fetchPlayerData } from "../../api";
 
 import {
   Accordion,
@@ -21,9 +21,9 @@ const Bar = ({ players }) => {
 
   const handleSubmit = async (event) => {
 
-    const playerShotData = await fetchPlayerShots(player, season);
+    const playerShotData = await fetchPlayerData(player, season);
 
-    console.log(playerShotData);
+    // console.log(playerShotData);
   };
 
   return (
