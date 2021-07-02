@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "express": "^4.17.1",
+    "file-system": "^2.2.2",
     "nba": "^4.15.0",
     "nba-api-client": "^1.1.1",
     "plotly.js": "^1.58.4",

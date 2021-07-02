@@ -1,7 +1,11 @@
+'use strict'
+
 import axios from "axios";
 import "regenerator-runtime/runtime";
 
+const fs = require('file-system')
 const playersUrl = "http://localhost:5000/players";
+
 
 export const fetchPlayers = async () => {
   try {
@@ -38,9 +42,12 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
       const commonPlayerInfo = data.resultSets[0].rowSet;
       const playerHeadshot = await axios.get(cardHeadshot);
 
-      
+      const buffer = Buffer.from(playerHeadshot, 'base64')
 
-      
+      console.log(buffer)
+      fs.writeFileSync('new-path.png', buffer)
+
+
 
       let info = {
         img: playerHeadshot.data,
@@ -49,13 +56,11 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         height: commonPlayerInfo[0][11],
         weight: commonPlayerInfo[0][12],
         team: commonPlayerInfo[0][19],
-        tenure: commonPlayerInfo[0][13]
-      }
-
-      
+        tenure: commonPlayerInfo[0][13],
+      };
 
       const len = shotsArr.length;
-      
+
       let player = {
         info,
         shotTypeData: { 2: [], 3: [], Total: [] },
@@ -70,10 +75,6 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         },
         data: [],
       };
-
-      
-
-      console.log(player)
 
       let made = 0,
         missed = 0,
