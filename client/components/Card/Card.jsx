@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import styles from "./Card.module.css";
+import logo from './loader.gif'
 
-const Card = () => {
-    return (
-        <h4>Card</h4>
-    )
-}
+const Card = ({ playerInfo }) => {
+  console.log(playerInfo);
+  return (
+    <div>
+      <h3>Card</h3>
 
-export default Card
+      {!playerInfo ? (
+        <img src={logo} alt='Loading' />
+      ) : (
+        <pre>{playerInfo.name}</pre>
+      )}
+    </div>
+  );
+};
+
+export default Card;

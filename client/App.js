@@ -23,16 +23,17 @@ class App extends React.Component {
   }
 
   updatePlayerData(data) {
-    console.log(data)
+    
 
     this.setState({ playerData: data})
 
-    console.log(this.state.playerData)
+    
     
   }
 
   render() {
     const { players, playerData } = this.state;
+    
     
 
     return (
