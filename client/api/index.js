@@ -3,7 +3,8 @@
 import axios from "axios";
 import "regenerator-runtime/runtime";
 
-const fs = require('file-system')
+// const Buffer = require('buffer/').Buffer
+// const fs = require('fs')
 const playersUrl = "http://localhost:5000/players";
 
 
@@ -40,17 +41,17 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
 
       // common player info and player headshot retrieved from api request
       const commonPlayerInfo = data.resultSets[0].rowSet;
-      const playerHeadshot = await axios.get(cardHeadshot);
+      const res = await axios.get(cardHeadshot)
 
-      const buffer = Buffer.from(playerHeadshot, 'base64')
-
-      console.log(buffer)
-      fs.writeFileSync('new-path.png', buffer)
+      // convert a base64 data into an image; Base64 --> Buffer --> Image
+      // const buffer = Buffer.from(res.data, 'base64')
+      // console.log(buffer)
+      // fs.writeFileSync('new-path.png', buffer)
 
 
 
       let info = {
-        img: playerHeadshot.data,
+        // img: playerHeadshot.data,
         name: commonPlayerInfo[0][3],
         position: commonPlayerInfo[0][15],
         height: commonPlayerInfo[0][11],
@@ -73,7 +74,10 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
           rCOR: [],
           Backcourt: [],
         },
-        data: [],
+        data: {
+          madeShots: [],
+         missedShots: []
+        },
       };
 
       let made = 0,
@@ -98,8 +102,15 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         missedITP = 0;
 
       for (let i = 0; i < len; i++) {
-        // data array that contains [x, y] loc of each shot
-        player.data.push([shotsArr[i][17], shotsArr[i][18]]);
+
+        // separate made/missed shots
+        if (shotsArr[i][10] === 'Made Shot') {
+          // data array that contains [x, y] loc of each shot
+          player.data.madeShots.push([shotsArr[i][17], shotsArr[i][18]])
+        } else {
+          player.data.missedShots.push([shotsArr[i][17], shotsArr[i][18]])
+        }
+      
 
         // shot type make/misses
         if (
@@ -296,7 +307,7 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         ((madeBC + missedBC) / (made + missed)).toFixed(2),
         (madeBC / (madeBC + missedBC)).toFixed(3)
       );
-
+      console.log(player)
       return player;
     }
   } catch (err) {

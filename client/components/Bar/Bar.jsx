@@ -23,7 +23,7 @@ const Bar = ({ players }) => {
 
     const playerData = await fetchPlayerData(player, season);
 
-    console.log(playerData);
+    // console.log(playerData);
   };
 
   return (

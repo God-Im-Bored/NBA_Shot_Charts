@@ -30,5 +30,8 @@ module.exports = {
       },
     ],
   },
+  node: {
+    global: true
+  },
   target: "node"
 };
