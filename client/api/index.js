@@ -307,7 +307,7 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         ((madeBC + missedBC) / (made + missed)).toFixed(2),
         (madeBC / (madeBC + missedBC)).toFixed(3)
       );
-      console.log(player)
+      
       return player;
     }
   } catch (err) {

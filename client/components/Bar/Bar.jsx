@@ -15,15 +15,15 @@ import {
 import { Autocomplete } from "@material-ui/lab";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const Bar = ({ players }) => {
+const Bar = ({ players, playerDataCallback }) => {
   const [player, setPlayer] = useState("");
   const [season, setSeason] = useState("");
 
   const handleSubmit = async (event) => {
 
     const playerData = await fetchPlayerData(player, season);
-
-    // console.log(playerData);
+    
+    playerDataCallback(playerData)
   };
 
   return (
