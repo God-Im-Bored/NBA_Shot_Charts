@@ -1,0 +1,23 @@
+.loading {
+    background-image: url("loader.gif")
+}
+
+.root {
+    height: 350px;
+}
+
+.media {
+    height: 280;
+    width: 400;
+    padding-top: 56.25%;
+}
+
+
+
+.desc {
+    text-align: center;
+}
+
+.name {
+    font-weight: bold;
+}
