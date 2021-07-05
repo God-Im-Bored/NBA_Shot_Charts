@@ -20,11 +20,16 @@ const Bar = ({ players, playerDataCallback }) => {
   const [season, setSeason] = useState("");
 
   const handleSubmit = async (event) => {
-
     const playerData = await fetchPlayerData(player, season);
-    
-    playerDataCallback(playerData)
+
+    playerDataCallback(playerData);
   };
+
+  const canBeSubmitted = () => {
+    return player.length > 0 && season.length > 0;
+  };
+
+  const isEnabled = canBeSubmitted();
 
   return (
     <Accordion>
@@ -77,6 +82,7 @@ const Bar = ({ players, playerDataCallback }) => {
       <AccordionActions>
         <Button
           type="submit"
+          disabled={!isEnabled}
           onClick={(e) => {
             handleSubmit(e.target.value);
           }}

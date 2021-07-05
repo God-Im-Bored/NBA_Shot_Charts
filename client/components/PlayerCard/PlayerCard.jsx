@@ -10,11 +10,11 @@ import {
 } from "@material-ui/core";
 import styles from "./Card.module.css";
 
-import logo from './loader.gif'
+
 
 
 const PlayerCard = ({ playerInfo }) => {
-  console.log(playerInfo);
+  
   return (
     <div>
       

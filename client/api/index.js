@@ -20,6 +20,8 @@ export const fetchPlayers = async () => {
 export const fetchPlayerData = async (playerName, seasonYear) => {
   let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`;
 
+
+
   try {
     if (playerName && seasonYear) {
       // player_data.resultSets[0].rowSet === shots array
@@ -27,6 +29,12 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
       const {
         data: { player_data },
       } = await axios.get(customUrl);
+
+      
+      // if the player/season combo yields no shot chart dataset send an alert
+      if (!player_data.resultSets[0].rowSet.length) {
+        return alert('Choose another player + year combo')
+      }
 
       // shots array data and player id retrieved from api request
       const shotsArr = player_data.resultSets[0].rowSet;
