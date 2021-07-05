@@ -22,7 +22,7 @@ const Bar = ({ players, playerDataCallback, reset }) => {
   const handleSubmit = async (event) => {
     const playerData = await fetchPlayerData(player, season);
 
-    console.log(playerData)
+    // console.log(playerData)
 
     playerDataCallback(playerData);
   };

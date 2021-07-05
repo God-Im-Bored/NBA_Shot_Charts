@@ -25,7 +25,7 @@ class App extends React.Component {
 
   updatePlayerData(data) {
     this.setState({ playerData: data });
-    console.log('hi data', data)
+    
   }
 
   handleReset(player, season) {
@@ -47,7 +47,7 @@ class App extends React.Component {
           reset={this.handleReset}
         />
         <PlayerCard playerInfo={playerData.info} />
-        <Chart />
+        <Chart shotTypes={playerData.shotTypeData} shotZones={playerData.shotZoneData}/>
         <Graph />
       </div>
     );
