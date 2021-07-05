@@ -15,12 +15,14 @@ import {
 import { Autocomplete } from "@material-ui/lab";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const Bar = ({ players, playerDataCallback }) => {
+const Bar = ({ players, playerDataCallback, reset }) => {
   const [player, setPlayer] = useState("");
   const [season, setSeason] = useState("");
 
   const handleSubmit = async (event) => {
     const playerData = await fetchPlayerData(player, season);
+
+    console.log(playerData)
 
     playerDataCallback(playerData);
   };
@@ -89,7 +91,10 @@ const Bar = ({ players, playerDataCallback }) => {
         >
           Submit
         </Button>
-        <Button>Reset</Button>
+        <Button
+        type='reset'
+        onClick={reset}
+        >Reset</Button>
       </AccordionActions>
     </Accordion>
   );

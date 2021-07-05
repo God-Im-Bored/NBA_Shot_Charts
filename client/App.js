@@ -11,7 +11,8 @@ class App extends React.Component {
       players: [],
       playerData: {},
     };
-    this.updatePlayerData = this.updatePlayerData.bind(this)
+    this.updatePlayerData = this.updatePlayerData.bind(this);
+    this.handleReset = this.handleReset.bind(this)
   }
 
   async componentDidMount() {
@@ -23,24 +24,30 @@ class App extends React.Component {
   }
 
   updatePlayerData(data) {
-    
+    this.setState({ playerData: data });
+    console.log('hi data', data)
+  }
 
-    this.setState({ playerData: data})
+  handleReset(player, season) {
+    if (player) return ''
+    if (season) return ''
 
-    
-    
+    console.log('hi reset', player, season)
   }
 
   render() {
     const { players, playerData } = this.state;
-    
-    
 
     return (
       <div className={styles.container}>
         <h2>Nba Shot Charts</h2>
-        <Bar players={players} playerDataCallback={this.updatePlayerData} className={styles.components}/>
-        <PlayerCard playerInfo={playerData.info}/>
+        <Bar
+          players={players}
+          playerDataCallback={this.updatePlayerData}
+          className={styles.components}
+          reset={this.handleReset}
+        />
+        <PlayerCard playerInfo={playerData.info} />
         <Chart />
         <Graph />
       </div>
