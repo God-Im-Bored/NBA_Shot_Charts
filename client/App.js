@@ -29,10 +29,9 @@ class App extends React.Component {
   }
 
   handleReset(player, season) {
-    if (player) return ''
-    if (season) return ''
-
     console.log('hi reset', player, season)
+   
+
   }
 
   render() {

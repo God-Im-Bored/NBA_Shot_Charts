@@ -28,13 +28,13 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: ['file-loader', "url-loader"],
-        options: {
-            name: '[name].[ext]',
-        },
-    }
+    //   {
+    //     test: /\.(png|jpe?g|gif)$/i,
+    //     loader: ['file-loader', "url-loader"],
+    //     options: {
+    //         name: '[name].[ext]',
+    //     },
+    // }
     ],
   },
   node: {
