@@ -9,9 +9,9 @@ import {
   Avatar,
 } from "@material-ui/core";
 import styles from "./Card.module.css";
-import logo from './logo.png'
-// import logo from './loader.gif'
-import generic from './generic-player.png'
+
+import logo from './loader.gif'
+
 
 const PlayerCard = ({ playerInfo }) => {
   console.log(playerInfo);
@@ -21,8 +21,7 @@ const PlayerCard = ({ playerInfo }) => {
       <Card className={styles.root}>
         <CardHeader title="NBA" subheader="Player Information"
           avatar={
-            <Avatar aria-label='logo'>
-              LOGO
+            <Avatar aria-label='logo' src='/940de4bb883629e952387ad33e5a3374.png'>
             </Avatar>
           }
         />
