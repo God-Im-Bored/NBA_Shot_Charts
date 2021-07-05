@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@material-ui/core";
 import styles from "./Card.module.css";
-// import logo from './logo.png'
+import logo from './logo.png'
 // import logo from './loader.gif'
 import generic from './generic-player.png'
 
@@ -28,7 +28,7 @@ const PlayerCard = ({ playerInfo }) => {
         />
         <CardMedia
           className={styles.media}
-          image={playerInfo ? generic : generic}
+          image='/d5d066ba2fdb5de1412c98ed560d23a3.png'
           title='player-image'
           />
         <CardContent className={styles.desc}>
@@ -42,15 +42,15 @@ const PlayerCard = ({ playerInfo }) => {
             {playerInfo ? playerInfo.position : ""}
           </Typography>
           <Typography variant="body2" component="h4">
-            {playerInfo ? "Height:" + playerInfo.height : ""}
+            {playerInfo ? playerInfo.height : ""}
           </Typography>
           <Typography variant="body2" component="h4">
             {playerInfo
-              ? "Weight:" + playerInfo.weight + "lbs."
+              ? playerInfo.weight + " lbs."
               : ""}
           </Typography>
           <Typography variant="body2" component="h4">
-            {playerInfo ? playerInfo.tenure + "yrs." : ""}
+            {playerInfo ? playerInfo.tenure + " yrs." : ""}
           </Typography>
         </CardContent>
       </Card>
