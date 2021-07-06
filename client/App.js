@@ -35,7 +35,7 @@ class App extends React.Component {
     const { players, playerData } = this.state;
 
     return (
-      console.log(playerData),
+      
       <div>
         <h2 className={styles.header}>Nba Shot Charts</h2>
         <Bar
@@ -52,7 +52,7 @@ class App extends React.Component {
             shotTypes={playerData.shotTypeData}
             shotZones={playerData.shotZoneData}
           />
-          <Graph />
+          <Graph shots={playerData.data}/>
         </div>
         <div></div>
       </div>

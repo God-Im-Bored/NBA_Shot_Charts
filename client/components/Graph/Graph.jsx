@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Graph = () => {
+const Graph = ({ shots}) => {
+    console.log(shots)
     return (
         <h4>Graph</h4>
+        
     )
 }
 

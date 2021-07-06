@@ -14,7 +14,7 @@ const Chart = ({ shotTypes, shotZones }) => {
   const typeHeaders = ["Shot Type", "Made", "Missed", "Total", "FG%"];
   const zoneHeaders = ["Zone Type", "Made", "Total", "Frequency", "FG%"];
   const types = ["2", "3", "Total"];
-    const zones = ["Restricted Area", "Paint", "Midrange", "ABT3", "Left Corner", "Right Corner", "Backcourt"]
+    const zones = ["Restricted Area", "Paint", "Midrange", "Above The Break 3", "Left Corner", "Right Corner", "Backcourt"]
 
   
   return (
@@ -105,43 +105,6 @@ const Chart = ({ shotTypes, shotZones }) => {
           </TableBody>
         </Table>
 
-        {/* <table>
-          <thead>
-              <tr>
-                  {zoneHeaders.map((h, i) => {
-                      <th key={i}>{h}</th>
-                  })}
-              </tr>
-          </thead>
-          <tbody>
-          {shotZones
-            ? Object.keys(shotZones).map((k, i) => {
-                let data = shotZones[k];
-                return (
-                  <tr key={i}>
-                    <td>{k}</td>
-                    <td>{data[0]}</td>
-                    <td>{data[1]}</td>
-                    <td>{data[2]}</td>
-                    <td>{data[3]}</td>
-                    <td>{data[4]}</td>
-                  </tr>
-                );
-              })
-            : zones.map((k, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{k}</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                );
-              })}
-
-          </tbody>
-      </table> */}
       </TableContainer>
     </div>
   );
