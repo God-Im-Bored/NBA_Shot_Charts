@@ -6,19 +6,19 @@ const Graph = ({ shots }) => {
 
     const shotGraph = shots ? (
         <Scatter
-            options={{
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }}
+            // options={{
+            //     scales: {
+            //         y: {
+                        
+            //         }
+            //     }
+            // }}
             data= {{
                 datasets: [
                     {
                         data: shots.madeShots.map((made) => made),
                         label: 'Made',
-                        borderColor: '#3333ff',
+                        borderColor: '#04724D',
                         fill: false
                     },
                     {
