@@ -2,7 +2,14 @@ import React from 'react'
 import { Scatter } from 'react-chartjs-2'
 
 const Graph = ({ shots }) => {
-    const ctx = document.getElementById('court')
+    const court = document.getElementById('court')
+    
+
+    console.log(court)
+
+    // const data = ctx => {
+
+    // }
 
     const shotGraph = shots ? (
         <Scatter
