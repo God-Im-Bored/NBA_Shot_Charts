@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 import axios from "axios";
 import "regenerator-runtime/runtime";
@@ -6,7 +6,6 @@ import "regenerator-runtime/runtime";
 // const Buffer = require('buffer/').Buffer
 // const fs = require('fs')
 const playersUrl = "http://localhost:5000/players";
-
 
 export const fetchPlayers = async () => {
   try {
@@ -20,8 +19,6 @@ export const fetchPlayers = async () => {
 export const fetchPlayerData = async (playerName, seasonYear) => {
   let customUrl = `http://localhost:5000/player_info/${playerName}/${seasonYear}`;
 
-
-
   try {
     if (playerName && seasonYear) {
       // player_data.resultSets[0].rowSet === shots array
@@ -30,10 +27,9 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         data: { player_data },
       } = await axios.get(customUrl);
 
-      
       // if the player/season combo yields no shot chart dataset send an alert
       if (!player_data.resultSets[0].rowSet.length) {
-        return alert('Choose another player + year combo')
+        return alert("Choose another player + year combo");
       }
 
       // shots array data and player id retrieved from api request
@@ -49,14 +45,12 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
 
       // common player info and player headshot retrieved from api request
       const commonPlayerInfo = data.resultSets[0].rowSet;
-      const res = await axios.get(cardHeadshot)
+      const res = await axios.get(cardHeadshot);
 
       // convert a base64 data into an image; Base64 --> Buffer --> Image
       // const buffer = Buffer.from(res.data, 'base64')
       // console.log(buffer)
       // fs.writeFileSync('new-path.png', buffer)
-
-
 
       let info = {
         // img: playerHeadshot.data,
@@ -84,7 +78,7 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         },
         data: {
           madeShots: [],
-         missedShots: []
+          missedShots: [],
         },
       };
 
@@ -110,15 +104,13 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         missedITP = 0;
 
       for (let i = 0; i < len; i++) {
-
         // separate made/missed shots
-        if (shotsArr[i][10] === 'Made Shot') {
+        if (shotsArr[i][10] === "Made Shot") {
           // data array that contains [x, y] loc of each shot
-          player.data.madeShots.push([shotsArr[i][17], shotsArr[i][18]])
+          player.data.madeShots.push([shotsArr[i][17], shotsArr[i][18]]);
         } else {
-          player.data.missedShots.push([shotsArr[i][17], shotsArr[i][18]])
+          player.data.missedShots.push([shotsArr[i][17], shotsArr[i][18]]);
         }
-      
 
         // shot type make/misses
         if (
@@ -315,7 +307,7 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         ((madeBC + missedBC) / (made + missed)).toFixed(2),
         (madeBC / (madeBC + missedBC)).toFixed(3)
       );
-      
+
       return player;
     }
   } catch (err) {

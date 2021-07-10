@@ -31,6 +31,10 @@ const Bar = ({ players, playerDataCallback, reset }) => {
     return player.length > 0 && season.length > 0;
   };
 
+  const resetData = (e) => {
+    reset()
+  }
+
   const isEnabled = canBeSubmitted();
 
   return (
@@ -93,7 +97,8 @@ const Bar = ({ players, playerDataCallback, reset }) => {
         </Button>
         <Button
         type='reset'
-        onClick={reset}
+        onClick={resetData}
+    
         >Reset</Button>
       </AccordionActions>
     </Accordion>

@@ -28,7 +28,8 @@ class App extends React.Component {
   }
 
   handleReset(player, season) {
-    console.log("hi reset", player, season);
+    console.log('reset button pressed')
+    this.setState({playerData: {}});
   }
 
   render() {
