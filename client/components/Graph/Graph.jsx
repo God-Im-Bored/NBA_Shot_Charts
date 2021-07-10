@@ -5,11 +5,8 @@ const Graph = ({ shots }) => {
     const court = document.getElementById('court')
     
 
-    console.log(court)
+    console.log(shots)
 
-    // const data = ctx => {
-
-    // }
 
     const shotGraph = shots ? (
         <Scatter
@@ -23,13 +20,13 @@ const Graph = ({ shots }) => {
             data= {{
                 datasets: [
                     {
-                        data: shots.madeShots.map((made) => made),
+                        data: shots.madeShots ? shots.madeShots.map((made) => made) : [],
                         label: 'Made',
                         borderColor: '#04724D',
                         fill: false
                     },
                     {
-                        data: shots.missedShots.map((missed) => missed),
+                        data: shots.missedShots ? shots.missedShots.map((missed) => missed) : [],
                         label: 'Missed',
                         borderColor: "rgba(255, 0, 0, 0.5)",
                         fill: false
@@ -39,7 +36,7 @@ const Graph = ({ shots }) => {
         />
     ) : null
 
-    // console.log(shotGraph)
+
 
 
     return (

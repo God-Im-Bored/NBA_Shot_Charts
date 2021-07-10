@@ -47,12 +47,12 @@ class App extends React.Component {
         />
 
         <div className={styles.container}>
-          <PlayerCard playerInfo={playerData.info} />
+          <PlayerCard playerInfo={playerData ? playerData.info : {}} />
           <Chart
-            shotTypes={playerData.shotTypeData}
-            shotZones={playerData.shotZoneData}
+            shotTypes={playerData ? playerData.shotTypeData : {}}
+            shotZones={playerData ? playerData.shotZoneData : {}}
           />
-          <Graph shots={playerData.data}/>
+          <Graph shots={playerData ? playerData.data : {}}/>
         </div>
         <div></div>
       </div>
