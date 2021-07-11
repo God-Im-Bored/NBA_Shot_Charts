@@ -31,8 +31,14 @@ const Bar = ({ players, playerDataCallback, reset }) => {
     return player.length > 0 && season.length > 0;
   };
 
-  const resetData = (e) => {
+  const resetData = () => {
     reset()
+  }
+
+  const handleReset = (e) => {
+    setPlayer('')
+    setSeason('')
+
   }
 
   const isEnabled = canBeSubmitted();
@@ -63,6 +69,7 @@ const Bar = ({ players, playerDataCallback, reset }) => {
             label="Player"
             value={player}
             onSelect={(e) => setPlayer(e.target.value)}
+            onChange={handleReset}
             variants="outlined"
           />
         )}
@@ -79,6 +86,7 @@ const Bar = ({ players, playerDataCallback, reset }) => {
             label="Season"
             value={season}
             onSelect={(e) => setSeason(e.target.value)}
+            onChange={handleReset}
             variants="outlined"
           />
         )}
