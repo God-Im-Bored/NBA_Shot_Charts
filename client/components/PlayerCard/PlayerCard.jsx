@@ -11,7 +11,14 @@ import {
 import styles from "./Card.module.css";
 
 const PlayerCard = ({ playerInfo }) => {
-  const headers = ["Name", "Team", "Position", "Height", "Weight", "Tenure"];
+  const headers = [
+    "Name",
+    "Team",
+    "Experience",
+    "Position",
+    "Height",
+    "Weight",
+  ];
 
   console.log(Object.entries(playerInfo ? playerInfo : {}));
 
@@ -33,38 +40,45 @@ const PlayerCard = ({ playerInfo }) => {
           image="/d5d066ba2fdb5de1412c98ed560d23a3.png"
           title="player-image"
         />
-        <CardContent className={styles.desc}>
+        <CardContent>
           <table>
             <thead>
-              {headers.map((header, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <Typography
-                      className={styles.name}
-                      variant="body2"
-                      component="h2"
-                    >
-                      {header}
-                    </Typography>
-                  </td>
-                  </tr>
-                  
-              ))}
+              {playerInfo
+                ? Object.entries(playerInfo).map(
+                    (key, idx) => (
+                      console.log(key),
+                      (
+                        <tr key={key}>
+                          <td>
+                            <Typography
+                              className={styles.name}
+                              variant="body2"
+                              component="h2"
+                            >
+                              {key[0]} :
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography>{key[1]}</Typography>
+                          </td>
+                        </tr>
+                      )
+                    )
+                  )
+                : headers.map((header, idx) => (
+                    <tr key={idx}>
+                      <td>
+                        <Typography
+                          className={styles.name}
+                          variant="body2"
+                          component="h2"
+                        >
+                          {header} :
+                        </Typography>
+                      </td>
+                    </tr>
+                  ))}
             </thead>
-            {/* <tbody>
-            <tr>
-                    {playerInfo
-                      ? Object.values(playerInfo).map((desc) => (
-                          
-                            <td>
-                              <Typography >{desc}</Typography>
-                            </td>
-                          
-                        ))
-                      : ""}
-                  
-                </tr>
-            </tbody> */}
           </table>
         </CardContent>
       </Card>

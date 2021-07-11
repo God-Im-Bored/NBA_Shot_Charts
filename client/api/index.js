@@ -54,12 +54,12 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
 
       let info = {
         // img: playerHeadshot.data,
-        name: commonPlayerInfo[0][3],
-        position: commonPlayerInfo[0][15],
-        height: commonPlayerInfo[0][11],
-        weight: commonPlayerInfo[0][12],
-        team: commonPlayerInfo[0][19],
-        tenure: commonPlayerInfo[0][13],
+        Name: commonPlayerInfo[0][3],
+        Team: commonPlayerInfo[0][19],
+        Experience: commonPlayerInfo[0][13],
+        Position: commonPlayerInfo[0][15],
+        Height: commonPlayerInfo[0][11],
+        Weight: commonPlayerInfo[0][12],
       };
 
       const len = shotsArr.length;
