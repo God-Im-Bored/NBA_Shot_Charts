@@ -30,7 +30,17 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
 
       // if the player/season combo yields no shot chart dataset send an alert
       if (!player_data.resultSets[0].rowSet.length) {
-        return alert("Choose another player + year combo");
+        alert("Choose another player + year combo");
+        let info = {
+          Headshot: "/d5d066ba2fdb5de1412c98ed560d23a3.png",
+          Name: "N/A",
+          Team: "N/A",
+          Experience: "N/A",
+          Position: "N/A",
+          Height: "N/A",
+          Weight:"N/A"
+        }
+        return info
       }
 
       // shots array data and player id retrieved from api request
