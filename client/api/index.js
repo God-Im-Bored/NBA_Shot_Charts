@@ -3,8 +3,7 @@
 import axios from "axios";
 import "regenerator-runtime/runtime";
 
-// const Buffer = require('buffer/').Buffer
-// const fs = require('fs')
+
 const playersUrl = "http://localhost:5000/players";
 
 export const fetchPlayers = async () => {
@@ -39,21 +38,19 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
       const cardInfoUrl = `http://localhost:5000/card_info/${playerId}`;
       const cardHeadshot = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png`;
 
-      const {
-        data: { data },
-      } = await axios.get(cardInfoUrl);
+      const {data : {data, img}}  = await axios.get(cardInfoUrl);
+
+
+      
 
       // common player info and player headshot retrieved from api request
       const commonPlayerInfo = data.resultSets[0].rowSet;
       const res = await axios.get(cardHeadshot);
 
-      // convert a base64 data into an image; Base64 --> Buffer --> Image
-      // const buffer = Buffer.from(res.data, 'base64')
-      // console.log(buffer)
-      // fs.writeFileSync('new-path.png', buffer)
+    
 
       let info = {
-        // img: playerHeadshot.data,
+        Headshot: img,
         Name: commonPlayerInfo[0][3],
         Team: commonPlayerInfo[0][19],
         Experience: commonPlayerInfo[0][13],
@@ -61,6 +58,7 @@ export const fetchPlayerData = async (playerName, seasonYear) => {
         Height: commonPlayerInfo[0][11],
         Weight: commonPlayerInfo[0][12],
       };
+      
 
       const len = shotsArr.length;
 

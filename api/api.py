@@ -36,8 +36,9 @@ def card_info(id):
     response = commonplayerinfo.CommonPlayerInfo(
         player_id=id
     )
+    card_img = 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/' + str(id) + '.png'
     card_data = json.loads(response.get_json())
-    return {'data': card_data}
+    return {'data': card_data, 'img': card_img}
 
 @app.route('/player_info/<player_name>/<season>', methods=['GET'])
 def player_info(player_name, season):
