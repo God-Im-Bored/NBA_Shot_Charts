@@ -1,14 +1,21 @@
-/* .loading {
-  background-image: url("loader.gif");
-} */
 
 .root {
   height: 450px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 25px 25px; 
 }
 
 .media {
- 
-  padding-top: 75.25%;
+  height: 35%;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.generic {
+  padding-top: 75.75%;
+
 }
 
 .desc {

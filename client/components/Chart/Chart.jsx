@@ -9,19 +9,26 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import styles from "./Chart.module.css";
 
 const Chart = ({ shotTypes, shotZones }) => {
   const typeHeaders = ["Shot Type", "Made", "Missed", "Total", "FG%"];
   const zoneHeaders = ["Zone Type", "Made", "Total", "Frequency", "FG%"];
   const types = ["2", "3", "Total"];
-    const zones = ["Restricted Area", "Paint", "Midrange", "Above The Break 3", "Left Corner", "Right Corner", "Backcourt"]
+  const zones = [
+    "Restricted Area",
+    "Paint",
+    "Midrange",
+    "Above The Break 3",
+    "Left Corner",
+    "Right Corner",
+    "Backcourt",
+  ];
 
-  
   return (
     <div>
-      <TableContainer component={Card}>
+      <TableContainer className={styles.root} component={Card}>
         <Table aria-label="shot type table">
-
           <TableHead>
             <TableRow>
               {typeHeaders.map((h, i) => (
@@ -40,10 +47,10 @@ const Chart = ({ shotTypes, shotZones }) => {
                       <TableCell component="th" scope="row">
                         {types[i]}
                       </TableCell>
-                      <TableCell align='right'>{data[0]}</TableCell>
-                      <TableCell align='right'>{data[1]}</TableCell>
-                      <TableCell align='right'>{data[2]}</TableCell>
-                      <TableCell align='right'>{data[3]}</TableCell>
+                      <TableCell align="right">{data[0]}</TableCell>
+                      <TableCell align="right">{data[1]}</TableCell>
+                      <TableCell align="right">{data[2]}</TableCell>
+                      <TableCell align="right">{data[3]}</TableCell>
                     </TableRow>
                   );
                 })
@@ -53,17 +60,17 @@ const Chart = ({ shotTypes, shotZones }) => {
                       <TableCell component="th" scope="row">
                         {types[i]}
                       </TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
                     </TableRow>
                   );
                 })}
           </TableBody>
         </Table>
         <Divider />
-        
+
         <Table aria-label="shot zone table">
           <TableHead>
             <TableRow>
@@ -82,10 +89,10 @@ const Chart = ({ shotTypes, shotZones }) => {
                       <TableCell component="th" scope="row">
                         {zones[i]}
                       </TableCell>
-                      <TableCell align='right'>{data[0]}</TableCell>
-                      <TableCell align='right'>{data[1]}</TableCell>
-                      <TableCell align='right'>{data[2]}</TableCell>
-                      <TableCell align='right'>{data[3]}</TableCell>
+                      <TableCell align="right">{data[0]}</TableCell>
+                      <TableCell align="right">{data[1]}</TableCell>
+                      <TableCell align="right">{data[2]}</TableCell>
+                      <TableCell align="right">{data[3]}</TableCell>
                     </TableRow>
                   );
                 })
@@ -95,16 +102,15 @@ const Chart = ({ shotTypes, shotZones }) => {
                       <TableCell component="th" scope="row">
                         {zones[i]}
                       </TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
-                      <TableCell align='right'>0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
+                      <TableCell align="right">0</TableCell>
                     </TableRow>
                   );
                 })}
           </TableBody>
         </Table>
-
       </TableContainer>
     </div>
   );

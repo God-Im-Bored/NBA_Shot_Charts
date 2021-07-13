@@ -11,7 +11,6 @@ import {
 import styles from "./Card.module.css";
 
 const PlayerCard = ({ playerInfo }) => {
-
   const headers = [
     "Name",
     "Team",
@@ -38,12 +37,14 @@ const PlayerCard = ({ playerInfo }) => {
           <CardMedia
             className={styles.media}
             image={playerInfo.Headshot}
+            src={playerInfo.Headshot}
             title="player-image"
           />
         ) : (
           <CardMedia
-            className={styles.media}
+            className={styles.generic}
             image="/d5d066ba2fdb5de1412c98ed560d23a3.png"
+            src="/d5d066ba2fdb5de1412c98ed560d23a3.png"
             title="player-image"
           />
         )}
@@ -52,22 +53,24 @@ const PlayerCard = ({ playerInfo }) => {
           <table>
             <thead>
               {playerInfo
-                ? Object.entries(playerInfo).map((key, idx) => (
-                    <tr key={idx}>
-                      <td>
-                        <Typography
-                          className={styles.name}
-                          variant="body2"
-                          component="h2"
-                        >
-                          {key[0]} :
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography>{key[1]}</Typography>
-                      </td>
-                    </tr>
-                  ))
+                ? Object.entries(playerInfo)
+                    .filter((elem, idx) => !elem.includes("Headshot"))
+                    .map((key, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <Typography
+                            className={styles.name}
+                            variant="body2"
+                            component="h2"
+                          >
+                            {key[0]} :
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography>{key[1]}</Typography>
+                        </td>
+                      </tr>
+                    ))
                 : headers.map((header, idx) => (
                     <tr key={idx}>
                       <td>
