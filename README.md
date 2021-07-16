@@ -31,7 +31,7 @@ Navigate to http://localhost:8080/
 
 ## Live Demo
 
-- https://peaceful-meninsky-80b1b7.netlify.app//
+- https://peaceful-meninsky-80b1b7.netlify.app/
 
 ## Built With
 
