@@ -1,11 +1,8 @@
 import React from "react";
 import {
   Card,
-  CardContent,
-  CardHeader,
   CardMedia,
-  Typography,
-  Avatar,
+ 
 } from "@material-ui/core";
 import { Scatter } from "react-chartjs-2";
 
@@ -63,17 +60,12 @@ const Graph = ({ shots }) => {
       }}
     />
   ) : (
-    <img src="court.png" height="600" />
+    <img src="court.png" height="575" width='650' />
   );
 
   return (
     <div>
       <Card style={styles.root}>
-        <CardMedia
-          image="/d5d066ba2fdb5de1412c98ed560d23a3.png"
-          src="/d5d066ba2fdb5de1412c98ed560d23a3.png"
-          title="Shot-Chart"
-        />
         {shotGraph}
       </Card>
     </div>

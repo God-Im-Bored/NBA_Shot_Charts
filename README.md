@@ -23,8 +23,9 @@ npm install
 To run the application
 
 ```JavaScript
+npm run start-flask-api
 npm run build-watch
-npm run start-server
+npm run start
 Navigate to http://localhost:8080/
 ```
 
@@ -32,13 +33,19 @@ Navigate to http://localhost:8080/
 * https://weather-now-65e346.netlify.app/
 
 ## Built With
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/) - micro web framework for Python
 * [React](https://reactjs.org/) - front-end framework 
+* [Material-UI](https://material-ui.com/) - front-end styling framework
+* [ChartsJs]()
 * [Axios](https://axios-http.com/docs/intro) - promise-based HTTP client
 
 
 ## Data From
-* [OpenWeather API](https://openweathermap.org/api) - current weather data
-* [IP-API](https://ip-api.com/docs/api:json#test) - geolocation lookup
+* [NBA_API](https://github.com/swar/nba_api) - an API client package to access the APIs for NBA.com
+
+
+## Future Improvements
+Incorporate D3.JS library for more fluid DOM manipulation to superimpose the scatterplot onto an svg, in this case, the half court.
 
 ## Developer
 * [Aram Martin](https://www.linkedin.com/in/aram-martin/) - LinkedIn
