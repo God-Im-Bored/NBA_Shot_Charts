@@ -19,6 +19,9 @@ body {
     
 }
 
-.components {
-    padding: 50px;
+.bar {
+    /* padding: 50px; */
+    top: 50%;
+    right: 50%;
+    left: 10%;
 }

@@ -39,13 +39,15 @@ class App extends React.Component {
       
       <div>
         <h2 className={styles.header}>Nba Shot Charts</h2>
+        <div className={styles.bar}>
+
         <Bar
           players={players}
           playerDataCallback={this.updatePlayerData}
-          className={styles.components}
           reset={this.handleReset}
           
         />
+        </div>
 
         <div className={styles.container}>
           <PlayerCard playerInfo={playerData ? playerData.info : {}} />
