@@ -1,6 +1,6 @@
 # NBA Players' Shot Charts
 
-This project is used to display a player's efficiency for each shot type and shot zone as well as display a shot graph, based on specified season. 
+This project is used to display a player's efficiency for each shot type and shot zone as well as display a shot graph, based on specified season. Note, the nba client module only has shot information for the 1996-97 to the most recent season. 
 
 ## Getting Started
 
