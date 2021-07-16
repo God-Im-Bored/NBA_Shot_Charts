@@ -1,6 +1,6 @@
 # NBA Players' Shot Charts
 
-This project is used to display the current weather based on the user's location and allows the user to search for another city's forecast.
+This project is used to display a player's efficiency for each shot type and shot zone as well as display a shot graph, based on specified season. 
 
 ## Getting Started
 
