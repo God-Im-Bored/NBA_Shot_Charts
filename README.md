@@ -46,6 +46,6 @@ Navigate to http://localhost:8080/
 
 ## Future Improvements
 Incorporate D3.JS library for more fluid DOM manipulation to superimpose the scatterplot onto an svg, in this case, the half court.
-
+Include additional query options (Game Length && Season Type) to allow user to alter ShotChartDetail endpoint even further. 
 ## Developer
 * [Aram Martin](https://www.linkedin.com/in/aram-martin/) - LinkedIn
