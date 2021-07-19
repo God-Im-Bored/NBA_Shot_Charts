@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./app.module.css";
 
-import { Bar, PlayerCard, Chart, Graph } from "./components";
+import { Bar, PlayerCard, Chart, Graph, Canvas } from "./components";
 import { fetchPlayers } from "./api";
 
 class App extends React.Component {
@@ -55,6 +55,7 @@ class App extends React.Component {
             shotTypes={playerData ? playerData.shotTypeData : {}}
             shotZones={playerData ? playerData.shotZoneData : {}}
           />
+          <Canvas />
           <Graph shots={playerData ? playerData.data : {}}/>
         </div>
         <div></div>

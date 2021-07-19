@@ -36,6 +36,7 @@ Navigate to http://localhost:8080/
 ## Built With
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/) - micro web framework for Python
+- [CORS](https://flask-cors.readthedocs.io/en/latest/) - flask extension for configuring CORS
 - [React](https://reactjs.org/) - front-end framework
 - [Material-UI](https://material-ui.com/) - front-end styling framework
 - [ChartsJs](https://www.chartjs.org/) - charting tool
