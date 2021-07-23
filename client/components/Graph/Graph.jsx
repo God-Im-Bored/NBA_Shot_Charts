@@ -14,31 +14,31 @@ const Graph = ({ shots }) => {
   const svg = d3.select("g");
 
   if (shots) {
-    const made = svg
-      .selectAll("svg")
-      .data(shots.madeShots)
-      .enter()
-      .append("circle");
+    // const made = svg
+    //   .selectAll("svg")
+    //   .data(shots.madeShots)
+    //   .enter()
+    //   .append("circle");
 
-    const missed = svg
-      .selectAll("svg")
-      .data(shots.missedShots)
-      .enter()
-      .append("circle");
+    // const missed = svg
+    //   .selectAll("svg")
+    //   .data(shots.missedShots)
+    //   .enter()
+    //   .append("circle");
 
-    made
-      .attr("cx", (d) => shot_xScale(d[0]))
-      .attr("cy", (d) => shot_yScale(d[1]))
-      .attr("r", 3)
-      .attr("fill", "green")
-      .attr("class", "made");
+    // made
+    //   .attr("cx", (d) => shot_xScale(d[0]))
+    //   .attr("cy", (d) => shot_yScale(d[1]))
+    //   .attr("r", 3)
+    //   .attr("fill", "green")
+    //   .attr("class", "made");
 
-    missed
-      .attr("cx", (d) => shot_xScale(d[0]))
-      .attr("cy", (d) => shot_yScale(d[1]))
-      .attr("r", 3)
-      .attr("fill", "red")
-      .attr("class", "missed");
+    // missed
+    //   .attr("cx", (d) => shot_xScale(d[0]))
+    //   .attr("cy", (d) => shot_yScale(d[1]))
+    //   .attr("r", 3)
+    //   .attr("fill", "red")
+    //   .attr("class", "missed");
   }
 
   return <br></br>;
