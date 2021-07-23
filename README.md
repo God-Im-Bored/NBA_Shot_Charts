@@ -39,7 +39,7 @@ Navigate to http://localhost:8080/
 - [CORS](https://flask-cors.readthedocs.io/en/latest/) - flask extension for configuring CORS
 - [React](https://reactjs.org/) - front-end framework
 - [Material-UI](https://material-ui.com/) - front-end styling framework
-- [ChartsJs](https://www.chartjs.org/) - charting tool
+- [D3js](https://d3js.org/) - DOM manipulation and visualization tool
 - [Axios](https://axios-http.com/docs/intro) - promise-based HTTP client
 
 ## Data From
@@ -48,8 +48,8 @@ Navigate to http://localhost:8080/
 
 ## Future Improvements
 
-- Incorporate D3.JS library for more fluid DOM manipulation to superimpose the scatterplot onto a svg element, in this case, the half court.
 - Include additional query options (Game Length && Season Type) to allow user to alter ShotChartDetail endpoint even further.
+- Include league efficiency averages for each shot zone as a hover option for the shot graph
 
 ## Developer
 
