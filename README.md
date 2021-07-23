@@ -30,7 +30,7 @@ Navigate to http://localhost:8080/
 ```
 
 ## Live Demo
-
+- NOTE: As of now the flask server must be running for the deployment link to work. This will be fixed soon.
 - https://peaceful-meninsky-80b1b7.netlify.app/
 
 ## Built With
