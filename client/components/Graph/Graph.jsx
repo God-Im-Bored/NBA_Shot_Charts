@@ -1,75 +1,47 @@
 import React from "react";
-import {
-  Card,
-  CardMedia,
- 
-} from "@material-ui/core";
-import { Scatter } from "react-chartjs-2";
-
-const styles = {
-  root: {
-    width: 650,
-  },
-};
+import * as d3 from "d3";
 
 const Graph = ({ shots }) => {
-  const shotGraph = shots ? (
-    <Scatter
-      options={{
-        responsive: true,
-        layout: 4,
-        plugins: {
-          legend: true,
-          position: "chartArea",
-          fullSize: true,
-        },
-        scales: {
-          x: {
-            grid: {
-              display: false,
-              drawBorder: false,
-            },
-            max: 250
-          },
-          y: {
-            grid: {
-              display: false,
-              drawBorder: false,
-            },
-            max: 350
-          },
-        },
-      }}
-      data={{
-        datasets: [
-          {
-            data: shots.madeShots ? shots.madeShots.map((made) => made) : [],
-            label: "Made",
-            borderColor: "#04724D",
-            fill: false,
-          },
-          {
-            data: shots.missedShots
-              ? shots.missedShots.map((missed) => missed)
-              : [],
-            label: "Missed",
-            borderColor: "rgba(255, 0, 0, 0.5)",
-            fill: false,
-          },
-        ],
-      }}
-    />
-  ) : (
-    <img src="court.png" height="575" width='650' />
-  );
+  const width = 480;
+  const height = (width / 50) * 47;
 
-  return (
-    <div>
-      <Card style={styles.root}>
-        {shotGraph}
-      </Card>
-    </div>
-  );
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+
+  shot_xScale.range([margin.left, innerWidth]).nice();
+  shot_yScale.range([margin.top, innerHeight]).nice();
+
+  const svg = d3.select("g");
+
+  if (shots) {
+    const made = svg
+      .selectAll("svg")
+      .data(shots.madeShots)
+      .enter()
+      .append("circle");
+
+    const missed = svg
+      .selectAll("svg")
+      .data(shots.missedShots)
+      .enter()
+      .append("circle");
+
+    made
+      .attr("cx", (d) => shot_xScale(d[0]))
+      .attr("cy", (d) => shot_yScale(d[1]))
+      .attr("r", 3)
+      .attr("fill", "green")
+      .attr("class", "made");
+
+    missed
+      .attr("cx", (d) => shot_xScale(d[0]))
+      .attr("cy", (d) => shot_yScale(d[1]))
+      .attr("r", 3)
+      .attr("fill", "red")
+      .attr("class", "missed");
+  }
+
+  return <br></br>;
 };
 
 export default Graph;

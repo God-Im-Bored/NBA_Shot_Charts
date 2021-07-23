@@ -22,7 +22,7 @@ const Bar = ({ players, playerDataCallback, reset }) => {
   const handleSubmit = async (event) => {
     const playerData = await fetchPlayerData(player, season);
 
-    // console.log(playerData)
+   
 
     playerDataCallback(playerData);
   };
@@ -32,14 +32,16 @@ const Bar = ({ players, playerDataCallback, reset }) => {
   };
 
   const resetData = () => {
-    reset()
-  }
+    reset();
+    // localStorage.removeItem('PlayerData')
+   
+ 
+  };
 
   const handleReset = (e) => {
-    setPlayer('')
-    setSeason('')
-
-  }
+    setPlayer("");
+    setSeason("");
+  };
 
   const isEnabled = canBeSubmitted();
 
@@ -103,11 +105,9 @@ const Bar = ({ players, playerDataCallback, reset }) => {
         >
           Submit
         </Button>
-        <Button
-        type='reset'
-        onClick={resetData}
-    
-        >Reset</Button>
+        <Button type="reset" onClick={resetData}>
+          Reset
+        </Button>
       </AccordionActions>
     </Accordion>
   );
