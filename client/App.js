@@ -9,7 +9,8 @@ class App extends React.Component {
     super();
     this.state = {
       players: [],
-      playerData: localStorage.getItem("PlayerData"),
+      playerData: {}
+      // playerData: localStorage.getItem("PlayerData"),
     };
     this.updatePlayerData = this.updatePlayerData.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   updatePlayerData(data) {
     this.setState({ playerData: data });
-    localStorage.setItem("PlayerData", JSON.stringify(this.state.playerData));
+    // localStorage.setItem("PlayerData", JSON.stringify(this.state.playerData));
   }
 
   handleReset(player, season) {
