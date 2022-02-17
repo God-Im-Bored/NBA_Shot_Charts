@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "cd api && venv/bin/flask run & webpack-dev-server --open ",
+    "start": "webpack-dev-server --open ",
     "start-flask-api": "cd api && venv/bin/flask run",
     "build-watch": "webpack -w",
     "build": "webpack ",
